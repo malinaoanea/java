@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="797f6178-2767-40d9-b4d9-a80c66c341ac" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZedudD98DgSHquRvBl1jGavgOK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RunManager" selected="Application.MovieTest">
+    <configuration name="Cleaner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Cleaner" />
+      <module name="course_5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Exemplul1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Exemplul1" />
+      <module name="course_5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MovieTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MovieTest" />
+      <module name="course_5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ex3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ex3" />
+      <module name="course_5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="exemplul2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="exemplul2" />
+      <module name="course_5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MovieTest" />
+        <item itemvalue="Application.ex3" />
+        <item itemvalue="Application.exemplul2" />
+        <item itemvalue="Application.Exemplul1" />
+        <item itemvalue="Application.Cleaner" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="797f6178-2767-40d9-b4d9-a80c66c341ac" name="Default Changelist" comment="" />
+      <created>1585203718250</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585203718250</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="921" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1585840684644">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state x="921" y="97" key="#com.intellij.ide.util.MemberChooser/0.23.1440.809@0.23.1440.809" timestamp="1585840684644" />
+    <state x="916" y="193" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585835837159">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state x="916" y="193" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.809@0.23.1440.809" timestamp="1585835837159" />
+    <state width="1010" height="162" key="GridCell.Tab.0.bottom" timestamp="1585840769809">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state width="1010" height="162" key="GridCell.Tab.0.bottom/0.23.1440.809@0.23.1440.809" timestamp="1585840769809" />
+    <state width="1010" height="162" key="GridCell.Tab.0.center" timestamp="1585840769808">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state width="1010" height="162" key="GridCell.Tab.0.center/0.23.1440.809@0.23.1440.809" timestamp="1585840769808" />
+    <state width="1010" height="162" key="GridCell.Tab.0.left" timestamp="1585840769808">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state width="1010" height="162" key="GridCell.Tab.0.left/0.23.1440.809@0.23.1440.809" timestamp="1585840769808" />
+    <state width="1010" height="162" key="GridCell.Tab.0.right" timestamp="1585840769809">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state width="1010" height="162" key="GridCell.Tab.0.right/0.23.1440.809@0.23.1440.809" timestamp="1585840769809" />
+    <state x="423" y="313" key="com.intellij.ide.util.TipDialog" timestamp="1585831731387">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state x="423" y="313" key="com.intellij.ide.util.TipDialog/0.23.1440.809@0.23.1440.809" timestamp="1585831731387" />
+    <state x="913" y="156" key="search.everywhere.popup" timestamp="1585837883644">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state x="913" y="156" key="search.everywhere.popup/0.23.1440.809@0.23.1440.809" timestamp="1585837883644" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ex3.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
