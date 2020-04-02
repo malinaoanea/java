@@ -4,8 +4,9 @@
 
 # Log file
 *.log
-*.idea
-
+**/.idea/
+**/out/
+.attach_pid*
 
 *.iml
 *.xml
