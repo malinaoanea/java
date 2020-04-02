@@ -4,12 +4,11 @@
 
 # Log file
 *.log
-.idea
+**/.idea/
 **/out/
+*.iml
 .attach_pid*
 
-*.iml
-*.xml
 
 # BlueJ files
 *.ctxt
