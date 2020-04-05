@@ -1,5 +1,6 @@
 import event.Concert;
 import event.Event;
+import event.Movie;
 import event.Theatre;
 import location.Arena;
 import location.Cinema;
@@ -80,16 +81,6 @@ public class Db {
         return event;
     }
 
-    public Arena getArena(String arena) {
-        for(int i = 0 ; i < nArenas; i++) {
-            Location location = (Location) this.arenas[i];
-            if( ((Location)location).getName() == arena )
-                return this.arenas[i];
-        }
-        System.out.println("Not good");
-        return arenas[0];
-    }
-
     public Event checkForEvent(String eventName) {
         for(int i = 0; i < this.noOfEvents; i++) {
             if(events[i] != null)
@@ -109,48 +100,6 @@ public class Db {
         System.out.println(str);
     }
 
-
-//    public  void addEvent(String name, String date, String locationName, String typee) {
-//
-//        Event event = this.checkForEvent(name);
-//
-//
-//        if( typee == "concert" ) {
-//            boolean arenaAppears = this.checkForArena(locationName);
-//            if( arenaAppears == true) {
-//                //the location is already in the db => i only need to add the event to the timetable of that location
-//                // !!!!!!!!! TRECI PRIN EVENT SA VEZI DACA EXISTA!!!!
-//                Arena arena = this.getArena(locationName);
-//
-//                if(event == null) {
-//                    Event ev = new Concert(name, arena, ++nArenas);
-//                    this.events[noOfEvents++] = ev;
-//                    ((Location) arena).updateTimetable(ev, date);
-//                }
-//
-//                else
-//                    ((Location)arena).updateTimetable(event, date);
-//            }
-//            else {
-//                //the location doesn't exists
-//                if ( this.nArenas < 3 ) {
-//
-//                    this.arenas[ this.nArenas++ ] = new Arena(locationName);
-//                    if(event == null) {
-//                        Event ev = new Concert(name, this.arenas[this.nArenas - 1], nArenas);
-//                        this.events[noOfEvents++] = ev;
-//                        ((Location) this.arenas[this.nArenas - 1]).updateTimetable(ev, date);
-//
-//                    }
-//
-//                    else
-//                        ((Location) this.arenas[this.nArenas - 1]).updateTimetable(event, date);
-//
-//                }
-//            }
-//        }
-//
-//    }
     public Location getLoc(String loc) {
         for(Location loc1:locations) {
             if(loc1.getName() == loc) {
@@ -227,6 +176,27 @@ public class Db {
 
     }
 
+    public void addMovie(String name, String date, String locationName) {
+        Cinema l = (Cinema) this.searchLocation(locationName);
+        if(l==null) {
+            Cinema cinema = new Cinema(locationName, 5);
+            this.locations.add(cinema);
+            l = cinema;
+        }
+
+        Movie t = (Movie) this.searchForEvent(name);
+        if(t == null) {
+            Movie movie = new Movie(name, l, ++noOfEvents);
+            this.events1.add(movie);
+            t = movie;
+        }
+
+        l.updateTimetable(t, date);
+        t.addCinema(l);
+
+
+    }
+
     public void printEvents1() {
         String str = "Events are ";
         for(Event ev:events1) {
@@ -238,52 +208,24 @@ public class Db {
     public  void addEvent(String name, String date, String locationName, String typee) {
         //for event add the new location
         //for location update the timetable with the specific date
-        //se presupune ca un etatru nu are ace aceeasi denumire cu un cinema sau arena
-//        Event event = new Event(name, ++noOfEvents );
-//        Location location = new Location(locationName);
-//
-//
-//        location = this.checkForLocation(location);
-//        event = this.checkForEvent1(event);
+        //there are no concerts, theaters or movies with the same name
+        //same for locations
+
 
         if( typee == "concert" ) {
             this.addConcert(name, date, locationName);
+            return;
 
         }
         if( typee == "teatru" ) {
             this.addTheatre(name, date, locationName);
+            return;
         }
-        //System.out.println(location);
-
-//        if( location == null ) {
-//            if( nLocation < 5 ) {
-//                if (typee == "concert")
-//                    location = new Arena(locationName);
-//                this.locations[nLocation++] = location;
-//            }
-//            else {
-//                System.out.println("Too many locations!");
-//                return;
-//            }
-//        }
-//
-//
-//        if( event == null ) {
-//            if ( noOfEvents <= 10 ) {
-//                if (typee == "concert")
-//                    event = new Concert(name, (Arena) location, ++noOfEvents);
-//                this.events[noOfEvents - 1] = event;
-//            }
-//            else {
-//                System.out.println("Too many events");
-//                return;
-//            }
-//        }
-//
-//        if( typee == "concert") {
-//            ((Concert)event).addArena( (Arena) location);
-//            location.updateTimetable(event, date);
-//        }
+        if(typee == "movie") {
+            this.addMovie(name, date, locationName);
+            return;
+        }
+        System.out.println("Wrong type for " + name + " taking place at " + locationName + " on " + date);
 
     }
 

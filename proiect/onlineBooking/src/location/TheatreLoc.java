@@ -23,7 +23,7 @@ public class TheatreLoc extends Location {
             unbookedTickets -= n;
             return  true;
         }
-        System.out.println("Not enough tickets available for booking for " + super.toString() );
+        System.out.println("There are not enough tickets for " + super.toString() );
         return false;
     }
 

@@ -12,6 +12,10 @@ public class Main {
         db.addEvent("Desteparea primaverii", "5 Aug", "Teatrul mic", "teatru");
         db.addEvent("Ivan cel prost", "15 Aug", "Odeon", "teatru");
         db.addEvent("Rocky cel frumos", "5 Apr", "Teatrul mic", "teatru");
+        db.addEvent("Ocean", "1 Apr", "Multiplex", "movie");
+        db.addEvent("Mean Girls", "10 Apr", "Cinemacity", "movie");
+        db.addEvent("Mean Girls", "10 Apr", "Multiplex", "movie");
+        db.addEvent("Hahaha", "1 Apr", "Multiplex", "movie");
 
         dbClients.addClient("Ioana", "11");
         dbClients.addClient("Maria", "123");
@@ -32,6 +36,7 @@ public class Main {
         book.bookEventLocation("Ivan cel prost", "Odeon", 1);
         book.showLocationForEvent("Rocky cel frumos");
         book.showLocationForEvent("Bruno Mars");
+        book.showLocationForEvent("Mean Girls");
 
 
 

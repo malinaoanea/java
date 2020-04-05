@@ -11,8 +11,6 @@ public class Concert extends Event {
     public Concert(String denumire, Arena arena, int index ) {
         super( denumire, index);
         this.arena = new Arena[3];
-        this.arena[0] = arena;
-        this.n = 1;
     }
 
     @Override

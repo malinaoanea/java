@@ -13,8 +13,6 @@ public class Theatre extends Event {
     public Theatre(String denumire, TheatreLoc theatre, int index) {
         super(denumire, index);
         this.theatre = new TheatreLoc[3];
-        this.theatre[0] = theatre;
-        n = 1;
     }
 
     @Override

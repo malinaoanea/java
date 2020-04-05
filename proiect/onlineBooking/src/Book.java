@@ -25,7 +25,9 @@ public class Book {
             System.out.println("Event " + eventName + " doesn't exist");
             return;
         }
-
+        String delim = "=======================================================";
+        System.out.println(delim);
+        System.out.println("Dates for " + eventName + " are: ");
         Location[] location = event.getLocation();
         for( Location l:location ) {
             if( l != null ) {
@@ -33,6 +35,7 @@ public class Book {
 
             }
         }
+        System.out.println(delim);
     }
 
     //books an event at a specific if possible ( there are enough tickets and the

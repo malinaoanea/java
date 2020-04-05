@@ -51,6 +51,7 @@ public class Location {
         String ans = "At " + name + " dates are: ";
 
         for(String date:dates) {
+            if(date != null)
             ans = ans + date + " // ";
         }
 
