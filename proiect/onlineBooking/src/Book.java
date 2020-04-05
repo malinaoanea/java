@@ -5,7 +5,6 @@ import event.Event;
 import location.Location;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Book {
     Db db;
@@ -19,7 +18,6 @@ public class Book {
 
     //prints dates at all locations where the event is AVAILABLE
     public void showDatesforEvent( String eventName ) {
-        //Event event = db.checkForEvent1(new Event(eventName, 0));
         Event event = db.getEvent(eventName);
         if( event == null ) {
             System.out.println("Event " + eventName + " doesn't exist");
@@ -41,7 +39,6 @@ public class Book {
     //books an event at a specific if possible ( there are enough tickets and the
     // event takes place at that location)
     public void bookEventLocation(String name, String locationName, int numberOfTickets) {
-        //Event event = db.checkForEvent(name);
         Event event = db.getEvent(name);
         if( event == null ) {
             System.out.println("Event " + name  + " doesn't exist");
@@ -72,7 +69,7 @@ public class Book {
     }
 
     public void showLocationForEvent(String eventName) {
-        //Event event = db.checkForEvent(eventName);
+
         Event event = db.getEvent(eventName);
         if( event == null ) {
             System.out.println("Event " + eventName + " doesn't exist");
@@ -91,10 +88,6 @@ public class Book {
         System.out.println(str);
     }
 
-//    public void showEventAtLocation(String location) {
-
-//    }
-
     public void showEvents() {
         db.printEvents1();
     }
@@ -109,9 +102,6 @@ public class Book {
         //return to a pointer to it
         Person person = dbClients.searchClient(clientName, cnp);
 
-//        if( person instanceof Client) {
-//            Client client = (Client) person;
-            //Event event = db.checkForEvent(eventName);
         Event event = db.getEvent(eventName);
             if( event == null ) {
                 System.out.println("Event " + eventName + " doesn't exists");
@@ -121,12 +111,8 @@ public class Book {
 
             if(book==true)
                 person.addEvent(event);
-//        }
-
 
     }
-
-
 
     public void showEventsForClient(String nume, String cnp) {
         Person client = dbClients.searchClient(nume, cnp);

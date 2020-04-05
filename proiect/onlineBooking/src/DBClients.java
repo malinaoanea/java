@@ -1,10 +1,7 @@
 import client.Client;
 import client.Person;
 import client.ProClient;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class DBClients {

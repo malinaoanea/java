@@ -25,9 +25,6 @@ public class Timetable {
     }
 
     public void addEvent(Event event, String date) {
-        String str = event.toString() + " nrepr=" + event.getNoOfRepr() + "  indx=" + event.getIndxEvent();
-//        this.timetable[0][0] = "a";
-//        this.timetable[event.getIndxEvent() - 1][event.getNoOfRepr()-1] = date;
         this.modifyTimetable(event.getIndxEvent() - 1, event.getNoOfRepr() -1, date);
         event.addRepr();
     }
