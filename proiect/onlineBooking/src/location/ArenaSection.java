@@ -21,8 +21,21 @@ public class ArenaSection {
         return false;
     }
 
+    public boolean chekForTicketsToUnbook(int n) {
+        //checks if there are n tikets unbooked
+        if( bookedTickets >= n) {
+            return  true;
+        }
+        return false;
+    }
+
     public void book(int n) {
         // books n tickets
         bookedTickets += n;
+    }
+
+    public void unbook(int n) {
+        // books n tickets
+        bookedTickets -= n;
     }
 }

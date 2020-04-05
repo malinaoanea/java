@@ -1,15 +1,16 @@
 package location;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Arena extends Location {
-    private String name;
     private ArenaSection[] arenaSections;
     int maxCapacity;
     int currArenaIndex;
 
-    public Arena(String adress, String name, int maxCapacity) {
-        super(adress);
-        this.name = name;
-        this.maxCapacity = maxCapacity;
+    public Arena( String name) {
+        super(name);
+        this.maxCapacity = 5;
         this.arenaSections = new ArenaSection[maxCapacity];
         this.arenaSections[0] = new ArenaSection("1", 5, 0);
         this.currArenaIndex = 1;
@@ -47,5 +48,22 @@ public class Arena extends Location {
             return true;
         }
 
+    }
+
+    public boolean unbook(int n) {
+
+        for( ArenaSection a: arenaSections )
+            if (a.chekForTicketsToUnbook(n)){
+                a.unbook(n);
+                return true;
+            }
+        return false;
+
+    }
+
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " " + super.toString();
     }
 }
