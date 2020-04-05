@@ -66,4 +66,5 @@ public class Arena extends Location {
     public String toString() {
         return this.getClass().getSimpleName() + " " + super.toString();
     }
+
 }

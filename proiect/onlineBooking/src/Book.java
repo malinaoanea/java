@@ -16,9 +16,11 @@ public class Book {
         dbClients = db2;
     }
 
+
     //prints dates at all locations where the event is AVAILABLE
     public void showDatesforEvent( String eventName ) {
-        Event event = db.checkForEvent(eventName);
+        //Event event = db.checkForEvent1(new Event(eventName, 0));
+        Event event = db.getEvent(eventName);
         if( event == null ) {
             System.out.println("Event " + eventName + " doesn't exist");
             return;
@@ -36,7 +38,8 @@ public class Book {
     //books an event at a specific if possible ( there are enough tickets and the
     // event takes place at that location)
     public void bookEventLocation(String name, String locationName, int numberOfTickets) {
-        Event event = db.checkForEvent(name);
+        //Event event = db.checkForEvent(name);
+        Event event = db.getEvent(name);
         if( event == null ) {
             System.out.println("Event " + name  + " doesn't exist");
             return;
@@ -46,8 +49,17 @@ public class Book {
 
     }
 
+    public void showLocations() {
+        String str = "Locations are ";
+        ArrayList<Location> locations = db.getLocations();
+        for(Location location:locations) {
+            str += ( location.toString() + " // " );
+        }
+        System.out.println(str);
+    }
+
     public void unbookEventLocation(String name, String locationName, int numberOfTickets) {
-        Event event = db.checkForEvent(name);
+        Event event = db.getEvent(name);
         if( event == null ) {
             System.out.println("Event " + name  + " doesn't exist");
             return;
@@ -57,7 +69,8 @@ public class Book {
     }
 
     public void showLocationForEvent(String eventName) {
-        Event event = db.checkForEvent(eventName);
+        //Event event = db.checkForEvent(eventName);
+        Event event = db.getEvent(eventName);
         if( event == null ) {
             System.out.println("Event " + eventName + " doesn't exist");
             return;
@@ -80,7 +93,7 @@ public class Book {
 //    }
 
     public void showEvents() {
-        db.printEvents();
+        db.printEvents1();
     }
 
     public void showClients() {
@@ -95,7 +108,8 @@ public class Book {
 
 //        if( person instanceof Client) {
 //            Client client = (Client) person;
-            Event event = db.checkForEvent(eventName);
+            //Event event = db.checkForEvent(eventName);
+        Event event = db.getEvent(eventName);
             if( event == null ) {
                 System.out.println("Event " + eventName + " doesn't exists");
                 return;

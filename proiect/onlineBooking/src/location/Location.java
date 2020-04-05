@@ -4,6 +4,7 @@ import event.Event;
 
 import java.sql.SQLRecoverableException;
 import java.sql.Time;
+import java.util.Objects;
 
 public class Location {
     private String name;
@@ -56,5 +57,14 @@ public class Location {
         System.out.println(ans);
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Location)) return false;
+        Location location = (Location) o;
+        return Objects.equals(getName(), location.getName());
+    }
+
 
 }

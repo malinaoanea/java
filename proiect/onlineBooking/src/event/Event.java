@@ -4,6 +4,7 @@ import location.Location;
 import location.TheatreLoc;
 
 import javax.print.DocFlavor;
+import java.util.Objects;
 
 public class Event {
     private int indxEvent = 0;
@@ -47,6 +48,14 @@ public class Event {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event)) return false;
+        Event event = (Event) o;
+        return Objects.equals(getName(), event.getName());
     }
 
     public void unbookForLocation(String eventName, String Location, int nTickets) {return;}
