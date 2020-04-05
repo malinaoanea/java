@@ -16,6 +16,7 @@ public class Timetable {
     }
 
     public void modifyTimetable(int ind,int nrep, String date) {
+        System.out.println(ind + " " + nrep);
         this.timetable[ind][nrep] = date;
     }
 

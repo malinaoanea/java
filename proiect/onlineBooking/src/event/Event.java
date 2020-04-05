@@ -43,7 +43,12 @@ public class Event {
 
     public Location checkForLocation(String arenaName){return null;}
 
-    public void bookForLocation(String eventName, String Location, int nTickets) {return;}
+    public boolean bookForLocation(String eventName, String Location, int nTickets) {return true;}
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void unbookForLocation(String eventName, String Location, int nTickets) {return;}
 
 }

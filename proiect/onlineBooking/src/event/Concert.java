@@ -47,12 +47,12 @@ public class Concert extends Event {
     }
 
     @Override
-    public void bookForLocation(String eventName, String location, int nTickets) {
+    public boolean bookForLocation(String eventName, String location, int nTickets) {
         Arena a = this.checkForLocation(location);
 
         if( a == null ) {
             System.out.println(eventName + " doesn't take place at " + location);
-            return;
+            return false;
         }
 
         boolean booked = a.book(nTickets);
@@ -60,11 +60,13 @@ public class Concert extends Event {
         if(booked == true) {
             System.out.println(n + " tickets booked for " + eventName + " taking place at "
             + location);
+            return true;
         }
 
         else {
             System.out.println("Couldn't book " + n + " tickets at " + eventName +
                     " taking place at " + location  + " // no tickets available");
+            return false;
         }
     }
 

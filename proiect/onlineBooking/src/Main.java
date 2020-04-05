@@ -32,16 +32,37 @@ public class Main {
 //            System.out.println(e.getLocation());
 
         Db db = new Db();
+        DBClients dbClients = new DBClients();
+        dbClients.addClient("ana", "123");
+        dbClients.addClient("ioana", "34");
+        dbClients.addClient("Malina", "299");
         db.addEvent("Desteptarea promaverii", "21 Jan 2020", "Teatrul mic", "concert");
         db.addEvent("Rolling Stoned", "40 April 2020", "Romexpo", "concert");
         db.addEvent("Scorpions", "45 May 2021", "Romexpo", "concert");
-        db.addEvent("Desteptarea promaverii", "21 Jan 2020", "Teatrul mic", "concert");
-        //db.printEvents();
-        Book book = new Book(db);
-        //book.bookEvent("Desteptarea promaverii");
-        //book.showDatesforEvent("Desteptarea promaverii");
+        db.addEvent("Scorpions", "45 May 2021", "mlm", "concert");
+        db.addEvent("Scorpions", "45 May 2021", "Romexpo", "concert");
+        db.addEvent("Scorpions", "45 May 2021", "Romexpo1", "concert");
+        db.printEvents();
+        Book book = new Book(db, dbClients);
+        book.showDatesforEvent("Desteptarea promaverii");
         book.bookEventLocation("Desteptarea promaverii", "Teatrul mic", 1);
         book.unbookEventLocation("Desteptarea promaverii", "Teatrul mic", 1);
         book.showLocationForEvent("Scorpions");
+        book.showEvents();
+        book.showClients();
+        //System.out.println(dbClients);
+        book.clientBuys("Malina", "299", "Desteptarea promaverii", "Teatrul mic");
+
+        book.clientBuys("Malina", "299", "Scorpions", "Romexpo");
+        book.showEventsForClient("Malina", "299");
+        dbClients.addSpecialClient("ana maria", "333");
+        book.clientBuys("ana maria", "333", "Desteptarea promaverii", "Teatrul mic");
+        book.clientBuys("ana maria", "333", "Desteptarea promaverii", "Teatrul mic");
+        book.clientBuys("ana maria", "333", "Desteptarea promaverii", "Teatrul mic");
+
+
+
+
+
     }
 }

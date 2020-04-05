@@ -17,6 +17,7 @@ public class Db {
     private Cinema[] cinemas;
     private TheatreLoc[] theatreLocs;
     private Location[] locations;
+    private int nLocation;
 
 
     public Db() {
@@ -29,17 +30,28 @@ public class Db {
         this.cinemas = new Cinema[3];
         this.theatreLocs = new TheatreLoc[3];
         this.locations = new Location[5];
+        this.nLocation = 0;
     }
 
     public boolean checkForArena(String arena) {
         if(nArenas == 0)
             return false;
         for(int i = 0 ; i < nArenas; i++) {
-            Location location = (Location)this.arenas[i];
-            if( ((Location)location).getName() == arena )
-                return true;
+            if(this.arenas[i]!=null) {
+                Location location = (Location) this.arenas[i];
+                if (((Location) location).getName() == arena)
+                    return true;
+            }
         }
         return false;
+    }
+
+    public Location checkForLocation(String locationName) {
+        for(int i = 0; i < this.nLocation; i++) {
+            if( this.locations[i].getName() == locationName )
+                return this.locations[i];
+        }
+        return null;
     }
 
     public Arena getArena(String arena) {
@@ -61,8 +73,9 @@ public class Db {
     }
 
     public void printEvents() {
-        for(Event e:events) {
-            System.out.println(e);
+        for(Event e:events)
+            if(e!=null){
+                System.out.println(e);
         }
     }
 
@@ -108,6 +121,48 @@ public class Db {
         }
 
     }
+
+//    public  void addEvent(String name, String date, String locationName, String typee) {
+//        //for event add the new location
+//        //for location update the timetable with the specific date
+//        //se presupune ca un etatru nu are ace aceeasi denumire cu un cinema sau arena
+//        Event event = this.checkForEvent(name);
+//        Location location = this.checkForLocation(locationName);
+//
+//        if( location == null ) {
+//            if( nLocation < 5 ) {
+//                if (typee == "concert")
+//                    location = new Arena(locationName);
+//                this.locations[nLocation++] = location;
+//            }
+//            else {
+//                System.out.println("Too many locations!");
+//                return;
+//            }
+//        }
+//
+//
+//        if( event == null ) {
+//            if ( noOfEvents <= 10 ) {
+//                if (typee == "concert")
+//                    event = new Concert(name, (Arena) location, ++noOfEvents);
+//                this.events[noOfEvents - 1] = event;
+//            }
+//            else {
+//                System.out.println("Too many events");
+//                return;
+//            }
+//        }
+//
+//        if( typee == "concert") {
+//            ((Concert)event).addArena( (Arena) location);
+//            location.updateTimetable(event, date);
+//        }
+//
+//
+//
+//
+//    }
 
 
 }
