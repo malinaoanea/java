@@ -1,15 +1,18 @@
 package location;
 
-import event.Event;
-
-import java.sql.SQLRecoverableException;
-import java.sql.Time;
 import java.util.Objects;
 
 public class Location {
     private String name;
     private Timetable thisWeekProgramme;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setThisWeekProgramme(Timetable thisWeekProgramme) {
+        this.thisWeekProgramme = thisWeekProgramme;
+    }
 
     public Location(String name) {
         this.name = name;
@@ -20,10 +23,6 @@ public class Location {
         return thisWeekProgramme;
     }
 
-    public void updateTimetable(Event event, String date) {
-        //U HAVE TO UPDATE THE TIME TABLE !!!!!!!!!
-        this.thisWeekProgramme.addEvent(event, date);
-    }
 
     public String getName() {
         return name;
@@ -38,26 +37,6 @@ public class Location {
         System.out.println("Sceduele for " + this.name + " is: " + thisWeekProgramme.toString());
     }
 
-    public String[] getDatesForEvent( Event event ) {
-        int indx = event.getIndxEvent();
-        int noOfRepr = event.getNoOfRepr();
-
-        return thisWeekProgramme.getEvent(indx-1, noOfRepr-1);
-    }
-
-    public void getEventAt( Event event ) {
-
-        String[] dates = this.getDatesForEvent(event);
-        String ans = "At " + name + " dates are: ";
-
-        for(String date:dates) {
-            if(date != null)
-            ans = ans + date + " // ";
-        }
-
-        System.out.println(ans);
-
-    }
 
     @Override
     public boolean equals(Object o) {

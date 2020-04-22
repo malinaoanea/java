@@ -1,9 +1,7 @@
 package event;
 
 import location.Location;
-import location.TheatreLoc;
 
-import javax.print.DocFlavor;
 import java.util.Objects;
 
 public class Event {
@@ -42,10 +40,6 @@ public class Event {
         return null;
     }
 
-    public Location checkForLocation(String arenaName){return null;}
-
-    public boolean bookForLocation(String eventName, String Location, int nTickets) {return true;}
-
     public void setName(String name) {
         this.name = name;
     }
@@ -57,7 +51,5 @@ public class Event {
         Event event = (Event) o;
         return Objects.equals(getName(), event.getName());
     }
-
-    public void unbookForLocation(String eventName, String Location, int nTickets) {return;}
 
 }

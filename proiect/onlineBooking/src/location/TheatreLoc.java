@@ -11,6 +11,29 @@ public class TheatreLoc extends Location {
         this.nTickets = nTickets;
     }
 
+    public void setnTickets(int nTickets) {
+        this.nTickets = nTickets;
+    }
+
+    public void setBookedTickets(int bookedTickets) {
+        this.bookedTickets = bookedTickets;
+    }
+
+    public void setUnbookedTickets(int unbookedTickets) {
+        this.unbookedTickets = unbookedTickets;
+    }
+
+    public int getBookedTickets() {
+        return bookedTickets;
+    }
+
+    public int getUnbookedTickets() {
+        return unbookedTickets;
+    }
+
+    public int getnTickets() {
+        return nTickets;
+    }
 
     @Override
     public String toString() {

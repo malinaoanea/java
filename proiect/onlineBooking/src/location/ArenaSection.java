@@ -21,6 +21,30 @@ public class ArenaSection {
         return false;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNumberOfTckets(int numberOfTckets) {
+        this.numberOfTckets = numberOfTckets;
+    }
+
+    public void setBookedTickets(int bookedTickets) {
+        this.bookedTickets = bookedTickets;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNumberOfTckets() {
+        return numberOfTckets;
+    }
+
+    public int getBookedTickets() {
+        return bookedTickets;
+    }
+
     public boolean chekForTicketsToUnbook(int n) {
         //checks if there are n tikets unbooked
         if( bookedTickets >= n) {

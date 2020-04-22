@@ -20,6 +20,18 @@ public class Timetable {
         this.timetable[ind][nrep] = date;
     }
 
+    public void setNoOfEvents(int noOfEvents) {
+        this.noOfEvents = noOfEvents;
+    }
+
+    public void setTimetable(String[][] timetable) {
+        this.timetable = timetable;
+    }
+
+    public int getNoOfEvents() {
+        return noOfEvents;
+    }
+
     public String[][] getTimetable() {
         return this.timetable;
     }

@@ -4,10 +4,10 @@ import client.ProClient;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class DBClients {
+public class DbClients {
     ArrayList<Person> clients;
 
-    public DBClients() {
+    public DbClients() {
         clients = new ArrayList<Person>();
     }
 

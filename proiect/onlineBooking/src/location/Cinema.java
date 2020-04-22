@@ -23,6 +23,22 @@ public class Cinema extends Location {
         return false;
     }
 
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public void setTicketsBooked(int ticketsBooked) {
+        this.ticketsBooked = ticketsBooked;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public int getTicketsBooked() {
+        return ticketsBooked;
+    }
+
     public boolean unbook(int n) {
         if(this.ticketsBooked - n > 0) {
             ticketsBooked -= n;

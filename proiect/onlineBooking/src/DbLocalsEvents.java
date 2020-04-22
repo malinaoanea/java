@@ -1,25 +1,19 @@
-import event.Concert;
-import event.Event;
-import event.Movie;
-import event.Theatre;
-import location.Arena;
-import location.Cinema;
-import location.Location;
-import location.TheatreLoc;
+import event.*;
+import location.*;
+import services.LocationServices;
+
 import java.util.ArrayList;
 
-public class Db {
+public class DbLocalsEvents {
     private int noOfEvents;
-
     private ArrayList<Location> locations;
     private ArrayList<Event> events1;
 
 
-    public Db() {
+    public DbLocalsEvents() {
         this.noOfEvents = 0;
         this.locations = new ArrayList<Location>();
         this.events1 = new ArrayList<Event>();
-
     }
 
 
@@ -68,11 +62,9 @@ public class Db {
             this.events1.add( concert );
             c = concert;
         }
-
-        l.updateTimetable(c, date);
+        LocationServices locationServices = new LocationServices(l);
+        locationServices.updateTimetable(c, date);
         c.addArena(l);
-
-
     }
 
     public void addTheatre(String name, String date, String locationName) {
@@ -90,7 +82,8 @@ public class Db {
             t = theatre;
         }
 
-        l.updateTimetable(t, date);
+        LocationServices locationServices = new LocationServices(l);
+        locationServices.updateTimetable(t, date);
         t.addTheatreLoc(l);
 
 
@@ -111,10 +104,10 @@ public class Db {
             t = movie;
         }
 
-        l.updateTimetable(t, date);
+        LocationServices locationServices = new LocationServices(l);
+        locationServices.updateTimetable(t, date);
+
         t.addCinema(l);
-
-
     }
 
     public void printEvents1() {

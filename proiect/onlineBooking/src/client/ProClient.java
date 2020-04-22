@@ -23,6 +23,18 @@ public class ProClient extends Person {
         return super.toString();
     }
 
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
+
+    public void setN(int n) {
+        this.n = n;
+    }
+
+    public int getN() {
+        return n;
+    }
+
     @Override
     public void addEvent(Event event) {
         this.events.add(event);

@@ -27,6 +27,14 @@ public class Person {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCNP(String CNP) {
+        this.CNP = CNP;
+    }
+
     public void addEvent(Event event) {
         return;
     }

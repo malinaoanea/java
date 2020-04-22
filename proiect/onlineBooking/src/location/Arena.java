@@ -50,6 +50,30 @@ public class Arena extends Location {
 
     }
 
+    public void setArenaSections(ArenaSection[] arenaSections) {
+        this.arenaSections = arenaSections;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public void setCurrArenaIndex(int currArenaIndex) {
+        this.currArenaIndex = currArenaIndex;
+    }
+
+    public ArenaSection[] getArenaSections() {
+        return arenaSections;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public int getCurrArenaIndex() {
+        return currArenaIndex;
+    }
+
     public boolean unbook(int n) {
 
         for( ArenaSection a: arenaSections )

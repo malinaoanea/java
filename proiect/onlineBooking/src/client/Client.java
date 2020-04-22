@@ -10,6 +10,10 @@ public class Client extends Person {
     public Client() {
     }
 
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
+
     public Client(String name, String CNP) {
         super(name,  CNP);
         events = new ArrayList<Event>();
