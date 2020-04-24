@@ -16,6 +16,11 @@ public class Arena extends Location {
         this.currArenaIndex = 1;
     }
 
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
     public ArenaSection addSection(){
         currArenaIndex += 1;
         if( currArenaIndex > maxCapacity ) {

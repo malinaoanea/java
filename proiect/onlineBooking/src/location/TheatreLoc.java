@@ -36,6 +36,11 @@ public class TheatreLoc extends Location {
     }
 
     @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
     public String toString() {
         return this.getClass().getSimpleName() + " " + super.toString();
     }

@@ -4,6 +4,11 @@ public class Cinema extends Location {
     private int maxCapacity;
     private int ticketsBooked;
 
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
     public Cinema(String name, int n) {
         super(name);
         maxCapacity = n;

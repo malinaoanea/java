@@ -31,6 +31,17 @@ public class Movie extends Event {
         return cinemas;
     }
 
+    @Override
+    protected String toCSV() {
+        String string = super.toCSV();
+        return  string;
+    }
+
+    @Override
+    protected String getType() {
+        return "movie";
+    }
+
     public void addCinema(Cinema a) {
         if (n < 3) {
             this.cinemas[n++] = a;

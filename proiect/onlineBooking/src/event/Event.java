@@ -1,10 +1,11 @@
 package event;
 
+import CSVutils.CSVutil;
 import location.Location;
 
 import java.util.Objects;
 
-public class Event {
+public class Event extends CSVutil {
     private int indxEvent = 0;
     private int noOfRepr;
     private String name;
@@ -52,4 +53,12 @@ public class Event {
         return Objects.equals(getName(), event.getName());
     }
 
+    @Override
+    protected String toCSV() {
+        return name;
+    }
+
+    protected String getType() {
+        return null;
+    }
 }

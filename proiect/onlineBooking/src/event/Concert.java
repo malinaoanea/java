@@ -36,5 +36,14 @@ public class Concert extends Event {
         else System.out.println("Too many arenas for " + super.toString());
     }
 
+    @Override
+    protected String getType() {
+        return  "concert";
+    }
 
+    @Override
+    protected String toCSV() {
+        String string = super.toCSV();
+        return  string;
+    }
 }

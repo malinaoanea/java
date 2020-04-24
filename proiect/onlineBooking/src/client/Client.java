@@ -37,4 +37,8 @@ public class Client extends Person {
         return events;
     }
 
+    @Override
+    protected String toCSV() {
+        return super.toCSV();
+    }
 }

@@ -47,4 +47,6 @@ public class Location {
     }
 
 
+    public void saveData(String fileName) {
+    }
 }

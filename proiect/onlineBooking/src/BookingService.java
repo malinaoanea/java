@@ -24,7 +24,7 @@ public class BookingService {
 
     //prints dates at all locations where the event is AVAILABLE
     public void showDatesforEvent( String eventName ) {
-        Event event = book.getDbLocalsEvents().getEvent(eventName);
+        Event event = book.getDb().getEvent(eventName);
         if( event == null ) {
             System.out.println("Event " + eventName + " doesn't exist");
             return;
@@ -45,7 +45,7 @@ public class BookingService {
     //books an event at a specific if possible ( there are enough tickets and the
     // event takes place at that location)
     public void bookEventLocation(String name, String locationName, int numberOfTickets) {
-        Event event = book.getDbLocalsEvents().getEvent(name);
+        Event event = book.getDb().getEvent(name);
         if( event == null ) {
             System.out.println("Event " + name  + " doesn't exist");
             return;
@@ -58,7 +58,7 @@ public class BookingService {
 
     public void showLocations() {
         String str = "Locations are ";
-        ArrayList<Location> locations = book.getDbLocalsEvents().getLocations();
+        ArrayList<Location> locations = book.getDb().getLocations();
         for(Location location:locations) {
             str += ( location.toString() + " // " );
         }
@@ -66,7 +66,7 @@ public class BookingService {
     }
 
     public void unbookEventLocation(String name, String locationName, int numberOfTickets) {
-        Event event = book.getDbLocalsEvents().getEvent(name);
+        Event event = book.getDb().getEvent(name);
         if( event == null ) {
             System.out.println("Event " + name  + " doesn't exist");
             return;
@@ -93,7 +93,7 @@ public class BookingService {
     }
 
     public void showEvents() {
-        book.getDbLocalsEvents().printEvents1();
+        book.getDb().printEvents1();
     }
 
     public void showClients() {
@@ -106,7 +106,7 @@ public class BookingService {
         //returns a pointer to it
         Person person = book.getDbClients().searchClient(clientName, cnp);
 
-        Event event = book.getDbLocalsEvents().getEvent(eventName);
+        Event event = book.getDb().getEvent(eventName);
         if( event == null ) {
             System.out.println("Event " + eventName + " doesn't exists");
             return;
@@ -125,7 +125,7 @@ public class BookingService {
 
     public void showLocationForEvent(String eventName) {
 
-        Event event = book.getDbLocalsEvents().getEvent(eventName);
+        Event event = book.getDb().getEvent(eventName);
         if( event == null ) {
             System.out.println("Event " + eventName + " doesn't exist");
             return;

@@ -1,8 +1,13 @@
 package client;
 
 import event.Event;
+import CSVutils.*;
 
-public class Person {
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+
+public class Person extends CSVutil {
     private String name;
     private String CNP;
 
@@ -38,4 +43,22 @@ public class Person {
     public void addEvent(Event event) {
         return;
     }
+
+    @Override
+    protected String getType() {
+        return null;
+    }
+
+    @Override
+    public void saveData(String fileName, String... data) {
+        super.saveData(fileName);
+    }
+
+
+    @Override
+    protected String toCSV() {
+        return name + ',' + CNP;
+    }
+
+
 }

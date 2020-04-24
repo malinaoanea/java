@@ -1,5 +1,6 @@
 package event;
 
+import location.Cinema;
 import location.Location;
 import location.TheatreLoc;
 
@@ -37,6 +38,17 @@ public class Theatre extends Event {
         if(n < 3) this.theatre[n++] = theatreLoc;
         else System.out.println("Too many theatres for " + super.toString());
 
+    }
+
+    @Override
+    protected String toCSV() {
+        String string = super.toCSV();
+        return  string;
+    }
+
+    @Override
+    protected String getType() {
+        return "theatre";
     }
 
     @Override

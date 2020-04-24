@@ -1,25 +1,25 @@
 public class Book {
-    DbLocalsEvents dbLocalsEvents;
+    Db db;
     DbClients dbClients;
 
     public void setDbClients(DbClients dbClients) {
         this.dbClients = dbClients;
     }
 
-    public void setDbLocalsEvents(DbLocalsEvents dbLocalsEvents) {
-        this.dbLocalsEvents = dbLocalsEvents;
+    public void setDb(Db db) {
+        this.db = db;
     }
 
     public DbClients getDbClients() {
         return dbClients;
     }
 
-    public DbLocalsEvents getDbLocalsEvents() {
-        return dbLocalsEvents;
+    public Db getDb() {
+        return db;
     }
 
-    public Book(DbLocalsEvents dbLocalsEvents, DbClients db2) {
-        this.dbLocalsEvents = dbLocalsEvents;
+    public Book(Db db, DbClients db2) {
+        this.db = db;
         this.dbClients = db2;
     }
 

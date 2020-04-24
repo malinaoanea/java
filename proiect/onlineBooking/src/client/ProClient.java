@@ -50,4 +50,9 @@ public class ProClient extends Person {
     public ArrayList<Event> getEvents() {
         return events;
     }
+
+    @Override
+    protected String toCSV() {
+        return super.toCSV() + ',' + n;
+    }
 }
