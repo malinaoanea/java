@@ -26,21 +26,31 @@ public class DbClients {
     public void addClient(String name, String CNP) {
         // Adds new ordinary client to csv for ordinary clients and to csv for arr clients.
         Client client = new Client(name, CNP);
-        Singletone.writeData(client, ClientsFileName);
-        Singletone.writeData((Person)client, PeopleFileName);
-        clients.add( client );
+        if (clients.contains(client)) {
+            System.out.println(client.toString() + " already exists.");
+        }
+        else {
+            Singletone.writeData(client, ClientsFileName);
+            Singletone.writeData((Person) client, PeopleFileName);
+            clients.add(client);
 
-        Collections.sort(clients, new SortClients());
+            Collections.sort(clients, new SortClients());
+        }
     }
 
     public void addSpecialClient(String name, String CNP) {
         // Adds new pro client to csv for ordinary clients and to csv for arr clients.
         ProClient proClient = new ProClient(name, CNP);
-        Singletone.writeData(proClient, ProClientsFileName);
-        Singletone.writeData((Person)proClient, PeopleFileName);
-        clients.add(proClient);
+        if (clients.contains(proClient)) {
+            System.out.println(proClient.toString() + " already exists.");
+        }
+        else {
+            Singletone.writeData(proClient, ProClientsFileName);
+            Singletone.writeData((Person) proClient, PeopleFileName);
+            clients.add(proClient);
 
-        Collections.sort(clients, new SortClients());
+            Collections.sort(clients, new SortClients());
+        }
     }
 
     @Override
@@ -56,7 +66,7 @@ public class DbClients {
     //add a binary search
     public Person searchClient( String name, String cnp) {
         for(Person client:clients) {
-            if( client.getName() == name &&  client.getCNP() == cnp) {
+            if( client.getName().equals(name) &&  client.getCNP().equals(cnp)) {
                 return client;
             }
         }

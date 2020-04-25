@@ -93,7 +93,7 @@ public class Arena extends Location {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " " + super.toString();
+        return super.toString() + "(" +  this.getClass().getSimpleName() + ")";
     }
 
 }

@@ -23,7 +23,7 @@ public class EventServices {
 
         for ( Location location:locations ) {
             if( location != null ) {
-                if( location.getName() == locationName )
+                if( location.getName().equals(locationName) )
                     return location;
             }
         }

@@ -5,6 +5,7 @@ import CSVutils.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Objects;
 
 
 public class Person extends CSVutil {
@@ -60,5 +61,17 @@ public class Person extends CSVutil {
         return name + ',' + CNP;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return Objects.equals(getName(), person.getName()) &&
+                Objects.equals(getCNP(), person.getCNP());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getCNP());
+    }
 }

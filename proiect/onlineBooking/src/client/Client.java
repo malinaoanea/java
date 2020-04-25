@@ -3,6 +3,7 @@ package client;
 import event.Event;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Client extends Person {
     private ArrayList<Event> events;
@@ -40,5 +41,18 @@ public class Client extends Person {
     @Override
     protected String toCSV() {
         return super.toCSV();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+        if (!super.equals(o)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEvents());
     }
 }

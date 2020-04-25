@@ -75,7 +75,8 @@ public class Db {
 
     public Event getEvent(String event) {
         for(Event ev:events1) {
-            if(ev.getName() == event) {
+            String name = ev.getName();
+            if(name.equals(event)) {
                 return ev;
             }
         }
@@ -92,7 +93,8 @@ public class Db {
 
     public Event searchForEvent(String event) {
         for( Event ev:events1) {
-            if( ev.getName() == event )
+            String name = ev.getName();
+            if( name.equals(event) )
                 return ev;
         }
         return null;
@@ -175,7 +177,7 @@ public class Db {
     }
 
     public void printEvents1() {
-        String str = "Events are ";
+        String str = "Events are: ";
         for(Event ev:events1) {
             str += ( ev + " // " );
         }
@@ -190,19 +192,19 @@ public class Db {
 
 
         if( typee == "concert" ) {
+            System.out.println(typee);
             this.addConcert(name, date, locationName);
-            return;
 
         }
-        if( typee == "teatru" ) {
+        else if( typee == "theatre" ) {
             this.addTheatre(name, date, locationName);
             return;
         }
-        if(typee == "movie") {
+         else if(typee == "movie") {
             this.addMovie(name, date, locationName);
             return;
         }
-        System.out.println("Wrong type for " + name + " taking place at " + locationName + " on " + date);
+        else System.out.println("Wrong type for " + name + " taking place at " + locationName + " on " + date);
 
     }
 

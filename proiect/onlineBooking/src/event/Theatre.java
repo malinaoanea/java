@@ -16,7 +16,7 @@ public class Theatre extends Event {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " :  " + super.toString();
+        return super.toString() + "(" +  this.getClass().getSimpleName() + ")";
     }
 
     @Override

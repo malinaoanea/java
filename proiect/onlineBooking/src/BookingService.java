@@ -108,7 +108,7 @@ public class BookingService {
 
         Event event = book.getDb().getEvent(eventName);
         if( event == null ) {
-            System.out.println("Event " + eventName + " doesn't exists");
+            System.out.println("Event " + eventName + " doesn't exists.");
             return;
         }
 

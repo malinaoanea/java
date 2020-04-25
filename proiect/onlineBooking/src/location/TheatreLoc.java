@@ -42,7 +42,7 @@ public class TheatreLoc extends Location {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " " + super.toString();
+        return super.toString() + "(" +  this.getClass().getSimpleName() + ")";
     }
 
     public boolean book(int n) {
