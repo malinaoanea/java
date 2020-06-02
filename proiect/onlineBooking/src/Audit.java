@@ -1,7 +1,11 @@
 import CSVutils.Singletone;
-import client.Client;
+import client.Person;
+import database.Data;
+import database.DataBaseHelper;
+import event.Concert;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -10,12 +14,19 @@ public class Audit {
     private DbClients dbClients;
     private Book book;
     private BookingService bookingService;
+    DataBaseHelper dbHelper;
     private String auditFile = "audit.csv";
+    Data data;
     public Audit() {
-        db = new Db();
-        dbClients = new DbClients();
-        book = new Book(db, dbClients);
-        bookingService = new BookingService(book);
+        this.db = new Db();
+        this.dbClients = new DbClients();
+        this.book = new Book(db, dbClients);
+        this.bookingService = new BookingService(book);
+        this.dbHelper = new DataBaseHelper();
+        ArrayList<Person> people = dbHelper.getClients();
+        this.data = new Data();
+        this.data.fetchData();
+
     }
 
     private void printMenu() {
@@ -75,10 +86,14 @@ public class Audit {
                     System.out.print("Location: "); String location = scanner.nextLine();
                     System.out.print("Date: ");String date = scanner.nextLine();
                     if (jobId == 1)
-                        db.addEvent(name, date, location, "concert");
+//                        db.addEvent(name, date, location, "concert");
+                        data.addEvent(name, date,location, "concert");
+
                     else if (jobId == 2)
-                        db.addEvent(name, date, location, "theatre");
-                    else db.addEvent(name, date, location, "movie");
+//                        db.addEvent(name, date, location, "theatre");
+                        data.addEvent(name, date, location, "theatre");
+//                    else db.addEvent(name, date, location, "movie");
+                    else data.addEvent(name, date, location, "movie");
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Added event," + name +',' + location+','+date +','+timeStamp, auditFile );
                 }
@@ -87,9 +102,11 @@ public class Audit {
                     System.out.print("Name: "); String name = scanner.nextLine();
                     System.out.print("CNP: "); String CNP = scanner.nextLine();
                     if (jobId == 1)
-                        dbClients.addClient(name, CNP);
+//                        dbClients.addClient(name, CNP);
+                        data.addClient(name, CNP);
                     else if (jobId == 2)
-                        dbClients.addSpecialClient(name, CNP);
+//                        dbClients.addSpecialClient(name, CNP);
+                        data.addClient(name, CNP, 0);
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Added client," + name +',' + CNP+','+timeStamp, auditFile );
                 }
@@ -132,7 +149,8 @@ public class Audit {
                     Singletone.updateAudit("showed events for client," + name +',' + cnp +','+timeStamp, auditFile );
                 }
                 else if ( jobId == 8) {
-                    bookingService.showEvents();
+//                    bookingService.showEvents();
+                    data.showEvents();
 
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Printed events," +timeStamp, auditFile );
@@ -154,7 +172,8 @@ public class Audit {
                     Singletone.updateAudit("Printed location for event," + name  +','+timeStamp, auditFile );
                 }
                 else if ( jobId == 9 ) {
-                    bookingService.showClients();
+//                    bookingService.showClients();
+                    data.showClients();
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Printed clients," +timeStamp, auditFile );
                 }

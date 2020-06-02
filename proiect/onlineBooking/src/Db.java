@@ -111,7 +111,7 @@ public class Db {
 
         Concert c = (Concert)this.searchForEvent(name);
         if(c == null) {
-            Concert concert = new Concert(name,l, ++noOfEvents );
+            Concert concert = new Concert(name,l, ++noOfEvents, date );
             this.events1.add( concert );
             c = concert;
         }

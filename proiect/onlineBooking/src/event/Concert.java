@@ -7,11 +7,24 @@ import location.Location;
 public class Concert extends Event {
     private Arena[] arena;
     private int n;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
 
     public Concert(String denumire, Arena arena, int index ) {
         super( denumire, index);
         this.arena = new Arena[3];
     }
+
+    public Concert(String denumire, Arena arena, int index, String date ) {
+        super( denumire, index);
+        this.arena = new Arena[3];
+        this.date = date;
+    }
+
+
 
     public Arena[] getArena() {
         return arena;
