@@ -116,7 +116,8 @@ public class Audit {
                 }
                 else if ( jobId == 3) {
                     System.out.print("Event name: "); String name = scanner.nextLine();
-                    bookingService.showDatesforEvent(name);
+//                    bookingService.showDatesforEvent(name);
+                    data.showDatesforEvent(name);
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Printed events,"+timeStamp, auditFile );
                 }
@@ -124,12 +125,13 @@ public class Audit {
                     System.out.print("Event name: "); String name = scanner.nextLine();
                     System.out.print("Event location: "); String location = scanner.nextLine();
                     System.out.print("Number of tickets: "); int ti = scanner.nextInt();
-                    bookingService.bookEventLocation(name, location, ti);
+//                    bookingService.bookEventLocation(name, location, ti);
+                    data.bookEventLocation(name, location, ti);
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Bought ticket" + name +',' + location+','+ti +','+timeStamp, auditFile );
                 }
                 else if ( jobId == 5) {
-                    bookingService.showLocations();
+                    data.showLocations();
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Printed locations," +timeStamp, auditFile );
                 }
@@ -137,7 +139,7 @@ public class Audit {
                     System.out.print("Event name: "); String name = scanner.nextLine();
                     System.out.print("Event location: "); String location = scanner.nextLine();
                     System.out.print("Number of tickets: "); int ti = scanner.nextInt();
-                    bookingService.unbookEventLocation(name, location, ti);
+                    data.unbookEventLocation(name, location, ti);
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Unbooked tickets," + name +',' + location+','+ti +','+timeStamp, auditFile );
                 }
@@ -167,7 +169,7 @@ public class Audit {
                 }
                 else if ( jobId == 11) {
                     System.out.print("Event name: "); String name = scanner.nextLine();
-                    bookingService.showLocationForEvent(name);
+                    data.showLocationForEvent(name);
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Printed location for event," + name  +','+timeStamp, auditFile );
                 }

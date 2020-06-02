@@ -382,10 +382,12 @@ public class DataBaseHelper {
     }
 
     public Event checkForEvent(ArrayList<Event> events, String name) {
-        for (Event event:events)
-            if (event.getName() == name)
-                return event;
+        for (Event event:events) {
+            System.out.println(event.getName() + ",");
 
+            if (event.getName().equals(name))
+                return event;
+        }
 
             return null;
     }
@@ -399,7 +401,7 @@ public class DataBaseHelper {
     }
 
     public ArrayList<Event> getEvents(ArrayList <Location> locations) {
-        String getEvents = "SELECT name, type, date, location FROM events";
+        String getEvents = "SELECT name, type, date, location, id FROM events";
 
 
         ArrayList<Event> events = new ArrayList();
@@ -409,72 +411,18 @@ public class DataBaseHelper {
             ResultSet result = stmt.executeQuery(getEvents);
 
             while (result.next()) {
-                System.out.println("type is " + result.getString("type"));
-                if (result.getString("type").equals("concert") )
-                    System.out.println("GOOD");
-                else System.out.println("NOT GOOD");
-
+                String name = result.getString("name");
+                String date = result.getString("date");
+                String location  = result.getString("location");
+                String index = result.getString("id");
                 String type = result.getString("type");
-                if (type.equals("concert") ) {
-                    Event event = this.checkForEvent(events, result.getString("name"));
-                    Location location = this.checkForLocation(locations, result.getString("location"));
 
-                    if (location == null) {
-                        location = new Location(result.getString("location"));
-                        locations.add(location);
-                        this.addLocation(result.getString("location"), "arena", 10);
-                    }
+                if (type.equals("concert") )
+                    this.addConcert(name, date, location, locations, events);
 
-                    if (event != null) {
-                        ((Concert) event).addArena((Arena)location);
-                    }
-                    else {
-                        Arena arena = new Arena(result.getString("name"));
-                        event = new Concert(result.getString("name"), arena, 0 );
-                        events.add(event);
-                        System.out.println("Added " + result.getString("name"));
-                    }
-                }
-                else if (type.equals("theatre")){
-                    Event event = this.checkForEvent(events, result.getString("name"));
-                    Location location = this.checkForLocation(locations, result.getString("location"));
-
-                    if (location == null) {
-                        location = new Location(result.getString("location"));
-                        locations.add(location);
-                        this.addLocation(result.getString("location"), "theatre", 10);
-                    }
-
-                    if (event != null) {
-                        ((Theatre) event).addTheatreLoc((TheatreLoc)location);
-                    }
-                    else {
-                        TheatreLoc theatreLoc = new TheatreLoc(result.getString("name"), 10);
-                        event = new Theatre(result.getString("name"), theatreLoc, 0 );
-                        events.add(event);
-                        System.out.println("Added " + result.getString("name"));
-                    }
-                } else  {
-                    Event event = this.checkForEvent(events, result.getString("name"));
-                    Location location = this.checkForLocation(locations, result.getString("location"));
-
-                    if (location == null) {
-                        location = new Location(result.getString("location"));
-                        locations.add(location);
-                        this.addLocation(result.getString("location"), "cinema", 10);
-                    }
-
-                    if (event != null) {
-                        ((Movie) event).addCinema((Cinema)location);
-                    }
-                    else {
-                        Cinema cinema = new Cinema(result.getString("name"), 10);
-                        event = new Movie(result.getString("name"), cinema, 0 );
-                        events.add(event);
-                        System.out.println("Added " + result.getString("name"));
-                    }
-                }
-
+                else if (type.equals("theatre"))
+                    this.addTheatre(name, date, location, locations, events);
+                else  this.addMovie(name, date, location, locations, events);
             }
             return events;
         } catch (SQLException e) {
@@ -493,7 +441,7 @@ public class DataBaseHelper {
 
         Theatre t = (Theatre)this.checkForEvent(events,name);
         if(t == null) {
-            Theatre theatre = new Theatre(name, l, 0);
+            Theatre theatre = new Theatre(name, l, 1);
             events.add(theatre);
             t = theatre;
         }

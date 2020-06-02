@@ -5,6 +5,8 @@ import client.Person;
 import client.ProClient;
 import event.Event;
 import location.Location;
+import services.EventServices;
+import services.LocationServices;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -30,8 +32,16 @@ public class Data {
 
     public void showEvents() {
         String str = "Events are: ";
-        for(Event ev:events) {
+        for(Event ev:this.events) {
             str += ( ev + " // " );
+        }
+        System.out.println(str);
+    }
+
+    public void showLocations() {
+        String str = "Locations are ";
+        for(Location location:this.locations) {
+            str += ( location.toString() + " // " );
         }
         System.out.println(str);
     }
@@ -44,6 +54,67 @@ public class Data {
 
         else System.out.println(name + " already in database... :)");
 
+    }
+
+    public void bookEventLocation(String name, String locationName, int numberOfTickets) {
+        Event event = this.dataBaseHelper.checkForEvent(events, name);
+        if( event == null ) {
+            System.out.println("Event " + name  + " doesn't exist");
+            return;
+        }
+
+        EventServices services = new EventServices(event);
+        services.bookForLocation(name, locationName, numberOfTickets);
+
+    }
+
+    public void showLocationForEvent(String eventName) {
+        Event event = dataBaseHelper.checkForEvent(events, eventName);
+        if( event == null ) {
+            System.out.println("Event " + eventName + " doesn't exist");
+            return;
+        }
+
+        Location[] location = event.getLocation();
+        String str = "Location for " + eventName + " are: ";
+        for( Location l:location ) {
+            if (l != null) {
+                str += (l + " // ");
+
+            }
+        }
+
+        System.out.println(str);
+    }
+
+    public void unbookEventLocation(String name, String locationName, int numberOfTickets) {
+        Event event = dataBaseHelper.checkForEvent(events, name);
+        if( event == null ) {
+            System.out.println("Event " + name  + " doesn't exist");
+            return;
+        }
+
+        EventServices eventServices = new EventServices(event);
+        eventServices.unbookForLocation(name, locationName, numberOfTickets);
+    }
+
+    public void showDatesforEvent( String eventName) {
+        Event event = dataBaseHelper.checkForEvent(events, eventName);
+        if( event == null ) {
+            System.out.println("Event " + eventName + " doesn't exist");
+            return;
+        }
+        String delim = "=======================================================";
+        System.out.println(delim);
+        System.out.println("Dates for " + eventName + " are: ");
+        Location[] location = event.getLocation();
+        for( Location l:location ) {
+            if( l != null ) {
+                LocationServices locationServices = new LocationServices(l);
+                locationServices.getEventAt(event);
+            }
+        }
+        System.out.println(delim);
     }
 
     public void addClient(String name, String CNP, int n) {

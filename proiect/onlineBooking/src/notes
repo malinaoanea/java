@@ -6,3 +6,11 @@ si tu cand le iei din baza de date le pui frumos
 de sters duplicatele din listele salvate local
 
 -de adaugat in data (addEvent) cautarea eventului in lista locala, iar daca exista doar updattarea datii si locatitei
+
+-rezolva timetable
+
+-muta bookingurile toate in services
+
+- salveaza in bazele de date si numarul de tichere cumparte si cele ramse
+
+-rezolva prob cu id uri le

@@ -11,12 +11,18 @@ import java.util.Objects;
 public class Person extends CSVutil {
     private String name;
     private String CNP;
+    private String id;
 
     public String getName() {
         return name;
     }
 
     public Person(String name, String CNP ) {
+        this.name = name;
+        this.CNP = CNP;
+    }
+
+    public Person(String name, String CNP, String id ) {
         this.name = name;
         this.CNP = CNP;
     }
