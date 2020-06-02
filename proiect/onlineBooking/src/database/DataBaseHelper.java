@@ -310,11 +310,11 @@ public class DataBaseHelper {
             while (result.next()) {
                 String proclient_n = result.getString("proclient");
                 if (proclient_n == "-1") {
-                    Client client = new Client(result.getString("name"), result.getString("cnp"));
+                    Client client = new Client(result.getString("name"), result.getString("cnp"), result.getString("id"));
                     people.add(client);
                 }
                 else {
-                    ProClient proClient = new ProClient(result.getString("name"), result.getString("cnp"));
+                    ProClient proClient = new ProClient(result.getString("name"), result.getString("cnp"), result.getString("id"));
                     people.add(proClient);
                 }
 

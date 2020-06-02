@@ -25,6 +25,7 @@ public class Person extends CSVutil {
     public Person(String name, String CNP, String id ) {
         this.name = name;
         this.CNP = CNP;
+        this.id = id;
     }
 
     public Person() {
