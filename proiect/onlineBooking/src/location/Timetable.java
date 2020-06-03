@@ -11,7 +11,7 @@ public class Timetable {
     int noOfEvents;
 
     public Timetable() {
-        this.timetable = new String[10][10];
+        this.timetable = new String[100][100];
         this.noOfEvents = 0;
     }
 
@@ -37,7 +37,7 @@ public class Timetable {
     }
 
     public void addEvent(Event event, String date) {
-        this.modifyTimetable(event.getIndxEvent() - 1, event.getNoOfRepr() -1, date);
+        this.modifyTimetable(Integer.valueOf(event.getId()) - 1, event.getNoOfRepr() -1, date);
         event.addRepr();
     }
 

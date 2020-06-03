@@ -30,8 +30,8 @@ public class DbClients {
             System.out.println(client.toString() + " already exists.");
         }
         else {
-            Singletone.writeData(client, ClientsFileName);
-            Singletone.writeData((Person) client, PeopleFileName);
+//            Singletone.writeData(client, ClientsFileName);
+//            Singletone.writeData((Person) client, PeopleFileName);
             clients.add(client);
 
             Collections.sort(clients, new SortClients());
@@ -45,8 +45,8 @@ public class DbClients {
             System.out.println(proClient.toString() + " already exists.");
         }
         else {
-            Singletone.writeData(proClient, ProClientsFileName);
-            Singletone.writeData((Person) proClient, PeopleFileName);
+//            Singletone.writeData(proClient, ProClientsFileName);
+//            Singletone.writeData((Person) proClient, PeopleFileName);
             clients.add(proClient);
 
             Collections.sort(clients, new SortClients());

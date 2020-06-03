@@ -68,36 +68,36 @@ public class Singletone {
     public static void updateAudit(String data, String fileName) {
         getInstance().csvWriter(data, fileName);
     }
-    private void csvWriter( Client client, String fileName ) {
-        client.saveData(fileName);
-    }
+//    private void csvWriter( Client client, String fileName ) {
+//        client.saveData(fileName);
+//    }
 
-    public static void writeData (Client client, String fileName) {
-            getInstance().csvWriter(client, fileName);
-    }
+//    public static void writeData (Client client, String fileName) {
+//            getInstance().csvWriter(client, fileName);
+//    }
 
-    private void csvWriter(ProClient proClient, String fileName ) {
-        proClient.saveData(fileName);
-    }
+//    private void csvWriter(ProClient proClient, String fileName ) {
+//        proClient.saveData(fileName);
+//    }
 
-    public static void writeData (ProClient proClient, String fileName) {
-        getInstance().csvWriter(proClient, fileName);
-    }
+//    public static void writeData (ProClient proClient, String fileName) {
+//        getInstance().csvWriter(proClient, fileName);
+//    }
 
-    private void csvWriter(Person person, String fileName ) {
-        person.saveData(fileName);
-    }
+//    private void csvWriter(Person person, String fileName ) {
+//        person.saveData(fileName);
+//    }
 
-    public static void writeData (Person person, String fileName) {
-        getInstance().csvWriter(person, fileName);
-    }
+//    public static void writeData (Person person, String fileName) {
+//        getInstance().csvWriter(person, fileName);
+//    }
 
-    private void csvWriter(Event event, String fileName, String location, String date, String type ) {
-        event.saveData(fileName, location, date, type);
-    }
+//    private void csvWriter(Event event, String fileName, String location, String date, String type ) {
+//        event.saveData(fileName, location, date, type);
+//    }
 
-    public static void writeData (Event event, String fileName, String location, String date, String type) {
-        getInstance().csvWriter(event, fileName, location, date, type);
-    }
+//    public static void writeData (Event event, String fileName, String location, String date, String type) {
+//        getInstance().csvWriter(event, fileName, location, date, type);
+//    }
 
 }

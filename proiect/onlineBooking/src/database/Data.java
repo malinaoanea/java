@@ -10,6 +10,7 @@ import services.LocationServices;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.logging.SimpleFormatter;
 
 public class Data {
     private ArrayList<Person> people;
@@ -28,6 +29,7 @@ public class Data {
         this.people = dataBaseHelper.getClients();
         this.locations = dataBaseHelper.getLocations();
         this.events = dataBaseHelper.getEvents(this.locations);
+        dataBaseHelper.getevents_with_people(people, events);
     }
 
     public void showEvents() {
@@ -49,12 +51,14 @@ public class Data {
     public void addClient(String name, String CNP) {
         if (dataBaseHelper.checkForClient(people, CNP) == null) {
             dataBaseHelper.addClient(name, CNP);
-            people.add(new Client(name, CNP));
+            people.add(new Client(name, CNP, String.valueOf(people.size() + 1) ) );
         }
 
         else System.out.println(name + " already in database... :)");
 
     }
+
+
 
     public void bookEventLocation(String name, String locationName, int numberOfTickets) {
         Event event = this.dataBaseHelper.checkForEvent(events, name);
@@ -85,6 +89,55 @@ public class Data {
         }
 
         System.out.println(str);
+    }
+
+    public void showEventsForClient(String nume, String cnp) {
+        Person client = dataBaseHelper.checkForClient(people, cnp);
+        if (client == null) {
+            System.out.println("Client " + nume + " doesn't exist.");
+            return;
+        }
+        ArrayList<Event> events = client.getEvents();
+        System.out.println(events);
+        String str;
+        str = "Events booked by " + nume + "(Normal Client): ";
+
+
+        for(Event event: events) {
+            str += (event + " // ");
+
+        }
+
+        System.out.println(str);
+    }
+
+    public void clientBuys(String clientName, String cnp, String eventName, String locationName) {
+        //checks if the client is in database, if it doesn't exist the new client is added
+        //returns a pointer to it
+        Person person = dataBaseHelper.checkForClient(people, cnp);
+
+
+        if (person == null) {
+            // initially all clients are normal clients
+            person = new Client(clientName, cnp, String.valueOf(people.size() + 1));
+            people.add(person);
+        }
+
+        Event event =  dataBaseHelper.checkForEvent(events, eventName);
+        if( event == null ) {
+            System.out.println("Event " + eventName + " doesn't exists.");
+            return;
+        }
+
+        EventServices eventServices = new EventServices(event);
+        boolean book = eventServices.bookForLocation(eventName, locationName, 1);
+
+        if(book==true) {
+            person.addEvent(event);
+            System.out.println(clientName + " booked ticket for " + eventName + " at "+ locationName);
+            dataBaseHelper.addEvent_Client(person.getId(), event.getId(), 1);
+        }
+
     }
 
     public void unbookEventLocation(String name, String locationName, int numberOfTickets) {
@@ -138,7 +191,7 @@ public class Data {
 
 
 
-    public  void addEvent(String name, String date, String locationName, String type) {
+    public  void  addEvent(String name, String date, String locationName, String type) {
         //for event add the new location
         //for location update the timetable with the specific date
         //there are no concerts, theaters or movies with the same name
@@ -146,14 +199,14 @@ public class Data {
         dataBaseHelper.addEvent(name, date, locationName, type);
 
         if( type == "concert" ) {
-            dataBaseHelper.addConcert(name, date, locationName, locations, events);
+            dataBaseHelper.addConcert(name, date, locationName, locations, events, String.valueOf(events.size() + 1));
 
         }
         else if( type == "theatre" ) {
-            dataBaseHelper.addTheatre(name, date, locationName, locations, events);
+            dataBaseHelper.addTheatre(name, date, locationName, locations, events, String.valueOf(events.size() + 1) );
         }
         else if(type == "movie") {
-            dataBaseHelper.addMovie(name, date, locationName, locations, events);
+            dataBaseHelper.addMovie(name, date, locationName, locations, events, String.valueOf(events.size() + 1));
         }
         else System.out.println("Wrong type for " + name + " taking place at " + locationName + " on " + date);
 

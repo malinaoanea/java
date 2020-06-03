@@ -52,12 +52,13 @@ public class ProClient extends Person {
         }
     }
 
+    @Override
     public ArrayList<Event> getEvents() {
         return events;
     }
 
-    @Override
-    protected String toCSV() {
-        return super.toCSV() + ',' + n;
-    }
+//    @Override
+//    protected String toCSV() {
+//        return super.toCSV() + ',' + n;
+//    }
 }

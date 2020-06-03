@@ -6,19 +6,23 @@ import location.Location;
 import java.util.Objects;
 
 public class Event extends CSVutil {
-    private int indxEvent = 0;
+//    private int indxEvent = 0;
     private int noOfRepr;
     private String name;
+    private String id;
 
-    public Event(String denumire, int index) {
-        this.indxEvent = index;
+    public Event(String denumire, String id) {
+//        this.indxEvent = index;
         this.noOfRepr = 1;
         this.name = denumire;
+        this.id = id;
     }
 
-    public int getIndxEvent() {
-        return indxEvent;
-    }
+    public String getId() {return id;}
+
+//    public int getIndxEvent() {
+//        return indxEvent;
+//    }
 
     public int getNoOfRepr() {
         return noOfRepr;
@@ -30,7 +34,7 @@ public class Event extends CSVutil {
 
     @Override
     public String toString() {
-        return this.name;
+        return this.name + ", " + this.id;
     }
 
     public String getName() {

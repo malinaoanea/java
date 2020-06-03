@@ -19,7 +19,7 @@ public class LocationServices {
     }
 
     public String[] getDatesForEvent( Event event ) {
-        int indx = event.getIndxEvent();
+        int indx = Integer.valueOf(event.getId());
         int noOfRepr = event.getNoOfRepr();
 
         return this.location.getThisWeekProgramme().getEvent(indx-1, noOfRepr-1);

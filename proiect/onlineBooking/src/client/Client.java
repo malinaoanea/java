@@ -39,14 +39,15 @@ public class Client extends Person {
         this.events.add(event);
     }
 
+    @Override
     public ArrayList<Event> getEvents() {
         return events;
     }
 
-    @Override
-    protected String toCSV() {
-        return super.toCSV();
-    }
+//    @Override
+//    protected String toCSV() {
+//        return super.toCSV();
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -60,4 +61,7 @@ public class Client extends Person {
     public int hashCode() {
         return Objects.hash(getEvents());
     }
+
+
+
 }

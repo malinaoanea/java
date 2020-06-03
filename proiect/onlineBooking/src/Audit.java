@@ -146,7 +146,7 @@ public class Audit {
                 else if ( jobId == 7) {
                     System.out.print("Client name: "); String name = scanner.nextLine();
                     System.out.print("CNP: "); String cnp = scanner.nextLine();
-                    bookingService.showEventsForClient(name, cnp);
+                    data.showEventsForClient(name, cnp);
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("showed events for client," + name +',' + cnp +','+timeStamp, auditFile );
                 }
@@ -162,7 +162,7 @@ public class Audit {
                     System.out.print("Event location: "); String location = scanner.nextLine();
                     System.out.print("Client name: "); String cname = scanner.nextLine();
                     System.out.print("CNP: "); String cnp = scanner.nextLine();
-                    bookingService.clientBuys(cname, cnp,name,location);
+                    data.clientBuys(cname, cnp,name,location);
 
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                     Singletone.updateAudit("Clients bought specific ticket," + name +',' + location+','+cname +','+timeStamp, auditFile );

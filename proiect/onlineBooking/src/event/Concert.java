@@ -13,12 +13,12 @@ public class Concert extends Event {
         return date;
     }
 
-    public Concert(String denumire, Arena arena, int index ) {
+    public Concert(String denumire, Arena arena, String index ) {
         super( denumire, index);
         this.arena = new Arena[3];
     }
 
-    public Concert(String denumire, Arena arena, int index, String date ) {
+    public Concert(String denumire, Arena arena, String index, String date ) {
         super( denumire, index);
         this.arena = new Arena[3];
         this.date = date;

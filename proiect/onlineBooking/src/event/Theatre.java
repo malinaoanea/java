@@ -9,7 +9,7 @@ public class Theatre extends Event {
     private TheatreLoc[] theatre;
     private int n;
 
-    public Theatre(String denumire, TheatreLoc theatre, int index) {
+    public Theatre(String denumire, TheatreLoc theatre, String  index) {
         super(denumire, index);
         this.theatre = new TheatreLoc[3];
     }
@@ -29,10 +29,10 @@ public class Theatre extends Event {
         super.addRepr();
     }
 
-    @Override
-    public int getIndxEvent() {
-        return super.getIndxEvent();
-    }
+//    @Override
+//    public int getIndxEvent() {
+//        return super.getIndxEvent();
+//    }
 
     public void addTheatreLoc(TheatreLoc theatreLoc) {
         if(n < 3) this.theatre[n++] = theatreLoc;

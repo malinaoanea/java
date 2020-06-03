@@ -14,6 +14,8 @@ import location.Location;
 import location.TheatreLoc;
 import services.LocationServices;
 
+import javax.swing.text.html.HTMLEditorKit;
+import java.net.Inet4Address;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -355,6 +357,46 @@ public class DataBaseHelper {
         }
     }
 
+    public Person getClientWitID(ArrayList<Person>people, String id) {
+        System.out.println("to be searched" + id + "\n");
+        for (Person person:people) {
+            System.out.println(person.getId() + " ");
+            if (person.getId().equals(id) )
+                return person;
+        }
+        return null;
+    }
+
+    public Event getEventsWitID(ArrayList<Event>events, String id) {
+        for (Event event:events) {
+            if (event.getId() == id)
+                return event;
+        }
+        return null;
+    }
+
+    public void getevents_with_people(ArrayList<Person> people, ArrayList<Event> events) {
+
+        String getClients = "SELECT client_id, event_id, n_tickets FROM clients_and_events";
+
+        try (Statement stmt = conn.createStatement()) {
+
+            ResultSet result = stmt.executeQuery(getClients);
+
+            while (result.next()) {
+                String client_id = result.getString("client_id");
+                String event_id = result.getString("event_id");
+                int n_tickets = Integer.valueOf(result.getString("n_tickets"));
+                this.getClientWitID(people, client_id).addEvent( this.getEventsWitID(events, event_id) );
+                }
+
+            } catch (SQLException ex) {
+            ex.printStackTrace();
+            }
+
+
+    }
+
     public void addEvent(String name,String date,String location, String type) {
         try {
 
@@ -373,6 +415,30 @@ public class DataBaseHelper {
             ps.executeUpdate();
 
             System.out.println("1 Record inserted...");
+
+        } catch(Exception e) {
+
+            System.out.print("\nUnable to insert..\n" + e + "\n");
+
+        }
+    }
+
+    public void addEvent_Client(String client_id,String event_id, int ntickets) {
+        try {
+
+            ps = conn.prepareStatement("insert into clients_and_events ( client_id, event_id, n_tickets) values(?,?,?)");
+
+
+            ps.setString(1, client_id);
+
+            ps.setString(2, event_id);
+
+            ps.setString(3, String.valueOf(ntickets));
+
+
+            ps.executeUpdate();
+
+            System.out.println("1 Record inserted into clients_and_events...");
 
         } catch(Exception e) {
 
@@ -414,15 +480,15 @@ public class DataBaseHelper {
                 String name = result.getString("name");
                 String date = result.getString("date");
                 String location  = result.getString("location");
-                String index = result.getString("id");
+                String id = result.getString("id");
                 String type = result.getString("type");
 
                 if (type.equals("concert") )
-                    this.addConcert(name, date, location, locations, events);
+                    this.addConcert(name, date, location, locations, events, id);
 
                 else if (type.equals("theatre"))
-                    this.addTheatre(name, date, location, locations, events);
-                else  this.addMovie(name, date, location, locations, events);
+                    this.addTheatre(name, date, location, locations, events, id);
+                else  this.addMovie(name, date, location, locations, events, id);
             }
             return events;
         } catch (SQLException e) {
@@ -431,7 +497,7 @@ public class DataBaseHelper {
 
     }
 
-    public void addTheatre(String name, String date, String locationName, ArrayList<Location> locations, ArrayList<Event> events) {
+    public void addTheatre(String name, String date, String locationName, ArrayList<Location> locations, ArrayList<Event> events, String id) {
         TheatreLoc l = (TheatreLoc) this.checkForLocation(locations, locationName);
         if(l==null) {
             TheatreLoc theatreLoc = new TheatreLoc(locationName, 5);
@@ -441,7 +507,7 @@ public class DataBaseHelper {
 
         Theatre t = (Theatre)this.checkForEvent(events,name);
         if(t == null) {
-            Theatre theatre = new Theatre(name, l, 1);
+            Theatre theatre = new Theatre(name, l, id);
             events.add(theatre);
             t = theatre;
         }
@@ -452,7 +518,7 @@ public class DataBaseHelper {
 
     }
 
-    public void addMovie(String name, String date, String locationName, ArrayList<Location> locations, ArrayList<Event> events) {
+    public void addMovie(String name, String date, String locationName, ArrayList<Location> locations, ArrayList<Event> events, String id) {
         Cinema l = (Cinema) this.checkForLocation(locations, locationName);
         if(l==null) {
             Cinema cinema = new Cinema(locationName, 5);
@@ -462,7 +528,7 @@ public class DataBaseHelper {
 
         Movie t = (Movie) this.checkForEvent(events, name);
         if(t == null) {
-            Movie movie = new Movie(name, l, 3);
+            Movie movie = new Movie(name, l, id);
             events.add(movie);
             t = movie;
         }
@@ -473,7 +539,7 @@ public class DataBaseHelper {
         t.addCinema(l);
     }
 
-    public void addConcert(String name, String date, String locationName, ArrayList<Location> locations, ArrayList<Event> events) {
+    public void addConcert(String name, String date, String locationName, ArrayList<Location> locations, ArrayList<Event> events, String id) {
         // Bug to fix : cand adauga un eveniment nou, daca mai exista o data face o copie
         Arena l = (Arena)this.checkForLocation(locations, locationName);
         if(l == null) {
@@ -484,7 +550,7 @@ public class DataBaseHelper {
 
         Concert c = (Concert)this.checkForEvent(events, name);
         if(c == null) {
-            Concert concert = new Concert(name,l, 2, date );
+            Concert concert = new Concert(name,l, id, date );
             events.add( concert );
             c = concert;
         }
@@ -493,4 +559,6 @@ public class DataBaseHelper {
         c.addArena(l);
 
     }
+
+
 }

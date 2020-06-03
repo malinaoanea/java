@@ -7,12 +7,11 @@ import java.awt.*;
 
 public class Root extends JFrame {
     public Root(Data db) {
-        super("Job Platform Manager");
+        super("Easy booking");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JTabbedPane tabbedPane = new JTabbedPane();
-//        tabbedPane.addTab("Companies", new CompaniesPanel(db));
 
         setContentPane(tabbedPane);
 
@@ -29,7 +28,7 @@ public class Root extends JFrame {
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception e) {
-            System.err.println("Unable to use Metal cross-platform L&F, falling back to default");
+            System.err.println("Default look and feel.");
             e.printStackTrace();
         }
 

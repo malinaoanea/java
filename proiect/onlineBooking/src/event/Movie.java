@@ -7,7 +7,7 @@ public class Movie extends Event {
     private Cinema[] cinemas;
     private int n;
 
-    public Movie(String denumire, Cinema cinema, int index) {
+    public Movie(String denumire, Cinema cinema, String index) {
         super(denumire, index);
         this.cinemas = new Cinema[3];
         this.n = 0;
