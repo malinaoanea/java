@@ -3,26 +3,50 @@ package gui;
 import database.Data;
 
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Root extends JFrame {
+public class Root implements ActionListener {
+    Data db;
     public Root(Data db) {
-        super("Easy booking");
+        this.db = db;
+        JFrame frame = new JFrame("Easy booking");
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JTabbedPane tabbedPane = new JTabbedPane();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setContentPane(tabbedPane);
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
 
-        setMinimumSize(new Dimension(400, 300));
-        setSize(new Dimension(800, 600));
 
-        setVisible(true);
+
+        JButton showEvents = new JButton("Show events");
+        JButton showClients = new JButton("Show clients");
+
+        showEvents.addActionListener(this);
+        showClients.addActionListener(this);
+        showEvents.setBounds(100, 100, 200, 40);
+        showClients.setBounds(100, 200, 200, 40);
+        panel.add(showClients);
+        panel.add(showEvents);
+
+        frame.add(panel);
+
+
+        frame.setMinimumSize(new Dimension(400, 300));
+        frame.setSize(new Dimension(800, 600));
+
+
+
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {
         Data db = new Data();
+        db.fetchData();
 
         // Use the Metal look and feel
         try {
@@ -33,5 +57,15 @@ public class Root extends JFrame {
         }
 
         new Root(db);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        if (actionEvent.getActionCommand() == "Show events") {
+//            new EventsTable(this.db);
+            EventsTable eventsTable = new EventsTable(this.db);
+        } else  {
+            System.out.println("noot good");
+        }
     }
 }

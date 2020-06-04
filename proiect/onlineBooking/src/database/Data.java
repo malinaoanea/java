@@ -72,11 +72,11 @@ public class Data {
 
     }
 
-    public void showLocationForEvent(String eventName) {
+    public Location[] showLocationForEvent(String eventName) {
         Event event = dataBaseHelper.checkForEvent(events, eventName);
         if( event == null ) {
             System.out.println("Event " + eventName + " doesn't exist");
-            return;
+            return null;
         }
 
         Location[] location = event.getLocation();
@@ -88,7 +88,7 @@ public class Data {
             }
         }
 
-        System.out.println(str);
+        return location;
     }
 
     public void showEventsForClient(String nume, String cnp) {
@@ -210,6 +210,10 @@ public class Data {
         }
         else System.out.println("Wrong type for " + name + " taking place at " + locationName + " on " + date);
 
+    }
+
+    public ArrayList<Event> getEvents(){
+        return this.events;
     }
 
 }
