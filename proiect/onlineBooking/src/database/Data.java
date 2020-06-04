@@ -25,6 +25,10 @@ public class Data {
         this.dataBaseHelper = new DataBaseHelper();
     }
 
+    public ArrayList<Person> getPeople() {
+        return people;
+    }
+
     public void fetchData() {
         this.people = dataBaseHelper.getClients();
         this.locations = dataBaseHelper.getLocations();
@@ -91,11 +95,11 @@ public class Data {
         return location;
     }
 
-    public void showEventsForClient(String nume, String cnp) {
+    public String showEventsForClient(String nume, String cnp) {
         Person client = dataBaseHelper.checkForClient(people, cnp);
         if (client == null) {
             System.out.println("Client " + nume + " doesn't exist.");
-            return;
+            return "Client doesn't exist.";
         }
         ArrayList<Event> events = client.getEvents();
         System.out.println(events);
@@ -109,6 +113,7 @@ public class Data {
         }
 
         System.out.println(str);
+        return str;
     }
 
     public void clientBuys(String clientName, String cnp, String eventName, String locationName) {

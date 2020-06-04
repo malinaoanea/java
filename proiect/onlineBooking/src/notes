@@ -13,4 +13,10 @@ de sters duplicatele din listele salvate local
 
 - salveaza in bazele de date si numarul de tichere cumparte si cele ramse
 
--rezolva prob cu id uri le
+- repara show events for clients
+
+DONE GUI: -show locations
+          - book n tickets for event
+          - show clients
+          - add client
+          - add event for client

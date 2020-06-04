@@ -65,7 +65,7 @@ public class Root implements ActionListener {
 //            new EventsTable(this.db);
             EventsTable eventsTable = new EventsTable(this.db);
         } else  {
-            System.out.println("noot good");
+            ClientsTable clientsTable = new ClientsTable(this.db);
         }
     }
 }

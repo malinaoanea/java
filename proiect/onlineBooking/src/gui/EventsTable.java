@@ -9,6 +9,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
 
 public class EventsTable{
@@ -56,13 +57,17 @@ public class EventsTable{
                     // print first column value from selected row
 //                    System.out.println(eventsTable.getValueAt(row,1));
 //                    System.out.println(eventsTable.getValueAt(eventsTable.getSelectedRow(), 1), 0).toString());
-                    BookingFrame bookie = new BookingFrame(  data, eventsTable.getValueAt(row,1).toString());
+                    String eventName = eventsTable.getValueAt(row,1).toString();
+                    BookingFrame bookie = new BookingFrame(  data, eventName);
                     bookie.getButtonOK().addActionListener(new ActionListener()
                     {
                         public void actionPerformed(ActionEvent e)
                         {
-                            System.out.println(bookie.getTickets().getText());
-                            System.out.println(bookie.getSelectedButtonText(bookie.getGroup()));
+                            System.out.println();
+//                            System.out.println();
+                            String location = bookie.getSelectedButtonText(bookie.getGroup());
+                            int n_tickets = Integer.valueOf(bookie.getTickets().getText());
+                            data.bookEventLocation(eventName, location, n_tickets);
                         }
                     });
                 }
