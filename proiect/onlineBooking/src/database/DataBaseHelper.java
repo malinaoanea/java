@@ -369,7 +369,7 @@ public class DataBaseHelper {
 
     public Event getEventsWitID(ArrayList<Event>events, String id) {
         for (Event event:events) {
-            if (event.getId() == id)
+            if (event.getId().equals(id))
                 return event;
         }
         return null;
@@ -387,6 +387,7 @@ public class DataBaseHelper {
                 String client_id = result.getString("client_id");
                 String event_id = result.getString("event_id");
                 int n_tickets = Integer.valueOf(result.getString("n_tickets"));
+                System.out.println(client_id + ": " + this.getEventsWitID(events, event_id));
                 this.getClientWitID(people, client_id).addEvent( this.getEventsWitID(events, event_id) );
                 }
 

@@ -18,6 +18,7 @@ public class ClientsTable {
     JPanel events;
     JTextField text;
     JButton newEvent;
+    JButton bookEvent;
 
     private Object[][] getClients(Data data) {
             ArrayList<Person> clients = data.getPeople();
@@ -35,11 +36,6 @@ public class ClientsTable {
             return objects;
         }
 
-        public void addClient() {
-
-
-
-        }
 
         public ClientsTable(Data data)  {
             jFrame = new JFrame("Clients");
@@ -48,22 +44,19 @@ public class ClientsTable {
             tablePanel = new JPanel();
             text = new JTextField(10);
             tablePanel.setLayout(new GridLayout(1, 1));
-            jFrame.setMinimumSize(new Dimension(400, 300));
+            jFrame.setMinimumSize(new Dimension(500, 300));
             jFrame.setSize(new Dimension(800, 600));
-
-
-
 
             Object[][] objects = this.getClients(data);
 
             String[] columns_name = {"id", "Client name", "CNP"};
             JTable clientsTable = new JTable(objects, columns_name);
 
-            clientsTable.getColumn(columns_name[0]).setMinWidth(200);
-            clientsTable.getColumn(columns_name[1]).setMinWidth(80);
+            clientsTable.getColumn(columns_name[0]).setMinWidth(3);
+            clientsTable.getColumn(columns_name[1]).setMinWidth(200);
             clientsTable.getColumn(columns_name[2]).setMinWidth(80);
             JPanel jPanel = new JPanel();
-
+            String name = "";
             clientsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                 @Override
                 public void valueChanged(ListSelectionEvent event) {
@@ -71,16 +64,9 @@ public class ClientsTable {
                     int column = clientsTable.getSelectedColumn();
                     System.out.println(String.valueOf(row) + ", " + String.valueOf(column) + "\n");
                     if (clientsTable.getSelectedRow() > -1) {
-                        // print first column value from selected row
-//                    System.out.println(eventsTable.getValueAt(row,1));
-//                    System.out.println(eventsTable.getValueAt(eventsTable.getSelectedRow(), 1), 0).toString());
+
                         String Name = clientsTable.getValueAt(row,1).toString();
                         String cnp = clientsTable.getValueAt(row, 2).toString();
-//                        events = new JPanel();
-//                        JLabel label = new JLabel();
-//                        label.setText(Name);
-//                        events.add(label);
-//                        jFrame.add(events);
                         String attendingEvenets = data.showEventsForClient(Name, cnp);
                         text.setText(attendingEvenets);
                         newEvent = new JButton("Buy ticket for a new event.");
@@ -89,7 +75,7 @@ public class ClientsTable {
                     }
                 }
             });
-
+            System.out.println(name);
             JButton b=new JButton("Add client");
             b.setBounds(300,100,140, 40);
             b.addActionListener(new ActionListener() {
@@ -101,6 +87,16 @@ public class ClientsTable {
 
 
             });
+            bookEvent = new JButton("Book event");
+            bookEvent.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+//                    new EventBookingClient(data);
+                    new BookingFrame(data);
+
+                }
+            });
+            jFrame.add(bookEvent);
             jFrame.add(b);
             jFrame.add(jPanel);
             tablePanel.add(text, BorderLayout.PAGE_END);
