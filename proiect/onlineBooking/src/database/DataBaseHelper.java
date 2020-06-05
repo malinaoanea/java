@@ -561,5 +561,35 @@ public class DataBaseHelper {
 
     }
 
+    public void delete(String id, String table) {
+        String sql = "DELETE FROM " + table + " WHERE id = " + id;
+        try {
+             ps = conn.prepareStatement(sql);
 
+//            // set the corresponding param
+//            ps.setInt(1, id);
+//            // execute the delete statement
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateName(String id, String table_name, String newName) {
+        String sql = "UPDATE " + table_name + " SET name = " + newName
+                + "WHERE id = " + id;
+        try {
+            ps = conn.prepareStatement(sql);
+
+//            // set the corresponding param
+//            ps.setInt(1, id);
+//            // execute the delete statement
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 }

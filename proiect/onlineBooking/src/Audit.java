@@ -87,15 +87,17 @@ public class Audit {
                     System.out.print("Date: ");String date = scanner.nextLine();
                     if (jobId == 1)
 //                        db.addEvent(name, date, location, "concert");
-                        data.addEvent(name, date,location, "concert");
+                        data.addEvent(name, date, location, "concert");
+
 
                     else if (jobId == 2)
 //                        db.addEvent(name, date, location, "theatre");
                         data.addEvent(name, date, location, "theatre");
 //                    else db.addEvent(name, date, location, "movie");
                     else data.addEvent(name, date, location, "movie");
-                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Added event," + name +',' + location+','+date +','+timeStamp, auditFile );
+//                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+//                    String currentThreadName = Thread.currentThread().getName();
+//                    Singletone.updateAudit("Added event," + name +',' + location+','+date +','+timeStamp +',' + currentThreadName, auditFile );
                 }
                 else if ( jobId == 2) {
                     jobId = this.chooseWhat("client");
@@ -107,8 +109,9 @@ public class Audit {
                     else if (jobId == 2)
 //                        dbClients.addSpecialClient(name, CNP);
                         data.addClient(name, CNP, 0);
-                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Added client," + name +',' + CNP+','+timeStamp, auditFile );
+//                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+//                    String currentThreadName = Thread.currentThread().getName();
+//                    Singletone.updateAudit("Added client," + name +',' + CNP+','+timeStamp +',' + currentThreadName, auditFile );
                 }
                 else if ( jobId == 0) {
                     stillWorking = false;
@@ -118,8 +121,9 @@ public class Audit {
                     System.out.print("Event name: "); String name = scanner.nextLine();
 //                    bookingService.showDatesforEvent(name);
                     data.showDatesforEvent(name);
-                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Printed events,"+timeStamp, auditFile );
+//                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+//                    String currentThreadName = Thread.currentThread().getName();
+//                    Singletone.updateAudit("Printed events,"+timeStamp+',' + currentThreadName, auditFile );
                 }
                 else if ( jobId == 4) {
                     System.out.print("Event name: "); String name = scanner.nextLine();
@@ -127,57 +131,65 @@ public class Audit {
                     System.out.print("Number of tickets: "); int ti = scanner.nextInt();
 //                    bookingService.bookEventLocation(name, location, ti);
                     data.bookEventLocation(name, location, ti);
-                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Bought ticket" + name +',' + location+','+ti +','+timeStamp, auditFile );
+//                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+//                    String currentThreadName = Thread.currentThread().getName();
+//                    Singletone.updateAudit("Bought ticket" + name +',' + location+','+ti +','+timeStamp + currentThreadName, auditFile );
                 }
                 else if ( jobId == 5) {
                     data.showLocations();
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Printed locations," +timeStamp, auditFile );
+                    String currentThreadName = Thread.currentThread().getName();
+                    Singletone.updateAudit("Printed locations," +timeStamp +',' + currentThreadName, auditFile );
                 }
                 else if ( jobId == 6) {
                     System.out.print("Event name: "); String name = scanner.nextLine();
                     System.out.print("Event location: "); String location = scanner.nextLine();
                     System.out.print("Number of tickets: "); int ti = scanner.nextInt();
                     data.unbookEventLocation(name, location, ti);
-                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Unbooked tickets," + name +',' + location+','+ti +','+timeStamp, auditFile );
+//                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+//                    String currentThreadName = Thread.currentThread().getName();
+//                    Singletone.updateAudit("Unbooked tickets," + name +',' + location+','+ti +','+timeStamp + ',' + currentThreadName, auditFile );
                 }
                 else if ( jobId == 7) {
                     System.out.print("Client name: "); String name = scanner.nextLine();
                     System.out.print("CNP: "); String cnp = scanner.nextLine();
                     data.showEventsForClient(name, cnp);
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("showed events for client," + name +',' + cnp +','+timeStamp, auditFile );
+                    String currentThreadName = Thread.currentThread().getName();
+                    Singletone.updateAudit("showed events for client," + name +',' + cnp +','+timeStamp +',' + currentThreadName, auditFile );
                 }
                 else if ( jobId == 8) {
 //                    bookingService.showEvents();
                     data.showEvents();
 
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Printed events," +timeStamp, auditFile );
+                    String currentThreadName = Thread.currentThread().getName();
+                    Singletone.updateAudit("Printed events," +timeStamp + ',' + currentThreadName, auditFile );
                 }
                 else if ( jobId == 10) {
                     System.out.print("Event name: "); String name = scanner.nextLine();
                     System.out.print("Event location: "); String location = scanner.nextLine();
                     System.out.print("Client name: "); String cname = scanner.nextLine();
                     System.out.print("CNP: "); String cnp = scanner.nextLine();
+                    String currentThreadName = Thread.currentThread().getName();
                     data.clientBuys(cname, cnp,name,location);
 
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Clients bought specific ticket," + name +',' + location+','+cname +','+timeStamp, auditFile );
+                    Singletone.updateAudit("Clients bought specific ticket," + name +',' + location+','+cname +','+timeStamp  + "," + currentThreadName,  auditFile );
                 }
                 else if ( jobId == 11) {
                     System.out.print("Event name: "); String name = scanner.nextLine();
                     data.showLocationForEvent(name);
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Printed location for event," + name  +','+timeStamp, auditFile );
+                    String currentThreadName = Thread.currentThread().getName();
+                    Singletone.updateAudit("Printed location for event," + name  +','+timeStamp + ',' + currentThreadName, auditFile );
                 }
                 else if ( jobId == 9 ) {
 //                    bookingService.showClients();
                     data.showClients();
                     String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    Singletone.updateAudit("Printed clients," +timeStamp, auditFile );
+                    String currentThreadName = Thread.currentThread().getName();
+                    Singletone.updateAudit("Printed clients," +timeStamp + ',' + currentThreadName, auditFile );
                 }
             }
         } catch (Exception e) {

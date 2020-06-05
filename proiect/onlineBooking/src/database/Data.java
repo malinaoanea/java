@@ -1,5 +1,6 @@
 package database;
 
+import CSVutils.Singletone;
 import client.Client;
 import client.Person;
 import client.ProClient;
@@ -9,7 +10,9 @@ import services.EventServices;
 import services.LocationServices;
 
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.SimpleFormatter;
 
 public class Data {
@@ -17,12 +20,14 @@ public class Data {
     private ArrayList<Location> locations;
     private ArrayList<Event> events;
     private DataBaseHelper dataBaseHelper;
+    private String auditFile = "audit.csv";
 
     public Data() {
         this.people = new ArrayList<>();
         this.locations = new ArrayList<>();
         this.events = new ArrayList<>();
         this.dataBaseHelper = new DataBaseHelper();
+
     }
 
     public ArrayList<Person> getPeople() {
@@ -42,6 +47,10 @@ public class Data {
             str += ( ev + " // " );
         }
         System.out.println(str);
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Showed events" + ',' + timeStamp +',' + currentThreadName, auditFile);
+
     }
 
     public void showLocations() {
@@ -50,6 +59,9 @@ public class Data {
             str += ( location.toString() + " // " );
         }
         System.out.println(str);
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Showed locations" + ',' + timeStamp +',' + currentThreadName, auditFile);
     }
 
     public void addClient(String name, String CNP) {
@@ -59,6 +71,10 @@ public class Data {
         }
 
         else System.out.println(name + " already in database... :)");
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Added client" + ',' + name + "," + CNP + "," + timeStamp +',' + currentThreadName, auditFile);
 
     }
 
@@ -73,6 +89,10 @@ public class Data {
 
         EventServices services = new EventServices(event);
         services.bookForLocation(name, locationName, numberOfTickets);
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Booked event" +  "," + event + "," + locationName + ',' + timeStamp +',' + currentThreadName, auditFile);
 
     }
 
@@ -91,6 +111,10 @@ public class Data {
 
             }
         }
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Showed locations for event " + eventName + " " + location + ',' + timeStamp +',' + currentThreadName, auditFile);
 
         return location;
     }
@@ -113,6 +137,10 @@ public class Data {
         }
 
         System.out.println(str);
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Showed events for client " + client +  ',' + timeStamp +',' + currentThreadName, auditFile);
         return str;
     }
 
@@ -143,6 +171,11 @@ public class Data {
             dataBaseHelper.addEvent_Client(person.getId(), event.getId(), 1);
         }
 
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Client " + clientName + "  bought " +  "tickets at " + locationName +" ,"+ timeStamp +',' + currentThreadName, auditFile);
+
     }
 
     public void unbookEventLocation(String name, String locationName, int numberOfTickets) {
@@ -154,6 +187,10 @@ public class Data {
 
         EventServices eventServices = new EventServices(event);
         eventServices.unbookForLocation(name, locationName, numberOfTickets);
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Showed events" + ',' + timeStamp +',' + currentThreadName, auditFile);
     }
 
     public void showDatesforEvent( String eventName) {
@@ -173,6 +210,10 @@ public class Data {
             }
         }
         System.out.println(delim);
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Showed DATES for " + eventName + ',' + timeStamp +',' + currentThreadName, auditFile);
     }
 
     public void addClient(String name, String CNP, int n) {
@@ -183,6 +224,10 @@ public class Data {
 
         else System.out.println(name + " already in database... :)");
 
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Added client " + name+ ',' + timeStamp +',' + currentThreadName, auditFile);
+
     }
 
     public void showClients() {
@@ -192,6 +237,10 @@ public class Data {
             str += ( client + ", ");
 
         System.out.println(str);
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Showed clients" + ',' + timeStamp +',' + currentThreadName, auditFile);
     }
 
 
@@ -215,10 +264,36 @@ public class Data {
         }
         else System.out.println("Wrong type for " + name + " taking place at " + locationName + " on " + date);
 
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Added event " + name + ',' + timeStamp +',' + currentThreadName, auditFile);
     }
 
     public ArrayList<Event> getEvents(){
         return this.events;
+    }
+
+    public void deleteClient(String id) {
+        Person person = dataBaseHelper.getClientWitID(people, id);
+
+        dataBaseHelper.delete(id, "clients");
+        people.remove(person);
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Removed client with id" + id + ',' + timeStamp +',' + currentThreadName, auditFile);
+
+    }
+
+    public void updateNameClient(String id, String newName) {
+        Person person = dataBaseHelper.getClientWitID(people, id);
+        dataBaseHelper.updateName(id, "clients", newName);
+
+        person.setName(newName);
+
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Removed client with id" + id + ',' + timeStamp +',' + currentThreadName, auditFile);
     }
 
 }

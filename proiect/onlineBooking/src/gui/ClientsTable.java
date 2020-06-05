@@ -19,6 +19,8 @@ public class ClientsTable {
     JTextField text;
     JButton newEvent;
     JButton bookEvent;
+    JButton deleteClient;
+    JButton changeName;
 
     private Object[][] getClients(Data data) {
             ArrayList<Person> clients = data.getPeople();
@@ -69,8 +71,8 @@ public class ClientsTable {
                         String cnp = clientsTable.getValueAt(row, 2).toString();
                         String attendingEvenets = data.showEventsForClient(Name, cnp);
                         text.setText(attendingEvenets);
-                        newEvent = new JButton("Buy ticket for a new event.");
-                        jPanel.add(newEvent);
+//                        newEvent = new JButton("Buy ticket for a new event.");
+//                        jPanel.add(newEvent);
 
                     }
                 }
@@ -96,6 +98,41 @@ public class ClientsTable {
 
                 }
             });
+
+            deleteClient = new JButton("Delete Client");
+            deleteClient.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    int row = clientsTable.getSelectedRow();
+                    int column = clientsTable.getSelectedColumn();
+                    System.out.println(String.valueOf(row) + ", " + String.valueOf(column) + "\n");
+                    if (clientsTable.getSelectedRow() > -1) {
+
+                        String id = clientsTable.getValueAt(row, 0).toString();
+                        data.deleteClient(id);
+//                        text.setText(attendingEvenets);
+//                        newEvent = new JButton("Buy ticket for a new event.");
+//                        jPanel.add(newEvent);
+                    }
+                }
+            });
+
+            changeName = new JButton("Modify name");
+            changeName.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    int row = clientsTable.getSelectedRow();
+                    int column = clientsTable.getSelectedColumn();
+                    System.out.println(String.valueOf(row) + ", " + String.valueOf(column) + "\n");
+                    if (clientsTable.getSelectedRow() > -1) {
+
+                        String id = clientsTable.getValueAt(row, 0).toString();
+                        data.updateNameClient(id, "schimbat");
+                    }
+                }
+            });
+            jFrame.add(changeName);
+            jFrame.add(deleteClient);
             jFrame.add(bookEvent);
             jFrame.add(b);
             jFrame.add(jPanel);
