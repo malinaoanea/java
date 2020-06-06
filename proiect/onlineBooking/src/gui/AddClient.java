@@ -55,7 +55,6 @@ public class AddClient {
             public void actionPerformed(ActionEvent actionEvent) {
                 data.addClient(txtUtilizator.getText(), txtCNP.getText());
                 model.addRow(new Object[]{data.getNewId() ,txtUtilizator.getText(), txtCNP.getText()});
-//                System.out.println(txtUtilizator.getText() + txtCNP.getText());
             }
         });
 

@@ -48,7 +48,6 @@ public class Root implements ActionListener {
         Data db = new Data();
         db.fetchData();
 
-        // Use the Metal look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception e) {
@@ -62,8 +61,6 @@ public class Root implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if (actionEvent.getActionCommand() == "Show events") {
-//            new EventsTable(this.db);
-            EventsTable eventsTable = new EventsTable(this.db);
             EventsTable_new eventsTable_new = new EventsTable_new(this.db);
         } else  {
             ClientsTable clientsTable = new ClientsTable(this.db);

@@ -455,7 +455,6 @@ public class DataBaseHelper {
 
     public Event checkForEvent(ArrayList<Event> events, String name) {
         for (Event event:events) {
-            System.out.println(event.getName() + ",");
 
             if (event.getName().equals(name))
                 return event;

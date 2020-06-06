@@ -20,9 +20,6 @@ public class Event extends CSVutil {
 
     public String getId() {return id;}
 
-//    public int getIndxEvent() {
-//        return indxEvent;
-//    }
 
     public int getNoOfRepr() {
         return noOfRepr;

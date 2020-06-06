@@ -29,7 +29,7 @@ public class AddEvent {
 
         gbcons.insets = new Insets(5, 5, 5, 5);
         frame.setLayout(gridBag);
-        JLabel lblLogin = new JLabel("Booking event", JLabel.CENTER);
+        JLabel lblLogin = new JLabel("Add event", JLabel.CENTER);
         lblLogin.setFont(new Font(" Arial ", Font.BOLD, 24));
         gbcons.fill = GridBagConstraints.BOTH;
         adauga(lblLogin, 0, 0, 4, 2, gbcons, frame, gridBag);
@@ -68,20 +68,15 @@ public class AddEvent {
         adauga(txtType, 1, 3, 2, 2, gbcons, frame, gridBag);
         //
 
-        JButton btnSalvare = new JButton(" Book ");
+        JButton btnSalvare = new JButton(" Add ");
         gbcons.fill = GridBagConstraints.HORIZONTAL;
         adauga(btnSalvare, 1, 4, 2, 1, gbcons, frame, gridBag);
 
         btnSalvare.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-//                data.addClient(txtUtilizator.getText(), txtCNP.getText());
-//                System.out.println(txtUtilizator.getText() + txtCNP.getText());
-//                System.out.println(txtUtilizator.getText() + " " + txtCNP.getText()  + txtLocation.getText());
-//                System.out.println(txtNume.getText() + " " +  txtDate.getText() +" " + txtLoc.getText() +" " + txtType.getText());
                 data.addEvent(txtNume.getText(), txtDate.getText(), txtLoc.getText(), txtType.getText());
                 model.addRow(new Object[]{data.getNewIdEv(), txtNume.getText()});
-//                frame.dispose();
             }
         });
 

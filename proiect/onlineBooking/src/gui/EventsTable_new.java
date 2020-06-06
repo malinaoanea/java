@@ -74,24 +74,6 @@ public class EventsTable_new {
         String name = "";
 
 
-//        eventsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//            @Override
-//            public void valueChanged(ListSelectionEvent event) {
-//                int row = eventsTable.getSelectedRow();
-//                int column = eventsTable.getSelectedColumn();
-//                System.out.println(String.valueOf(row) + ", " + String.valueOf(column) + "\n");
-//                if (eventsTable.getSelectedRow() > -1) {
-//
-//                    String id = eventsTable.getValueAt(row,0).toString();
-//                    String name = eventsTable.getValueAt(row, 1).toString();
-//                    String attendingEvenets = data.showEventsForClient(Name, cnp);
-//                    text.setText(attendingEvenets);
-////                        newEvent = new JButton("Buy ticket for a new event.");
-////                        jPanel.add(newEvent);
-//
-//                }
-//            }
-//        });
         System.out.println(name);
         JButton b=new JButton("Add events");
         b.setBounds(300,100,140, 40);
@@ -126,9 +108,6 @@ public class EventsTable_new {
 
                     String id = eventsTable.getValueAt(row, 0).toString();
                     data.deleteEvent(id);
-//                        text.setText(attendingEvenets);
-//                        newEvent = new JButton("Buy ticket for a new event.");
-//                        jPanel.add(newEvent);
                 }
                 model.removeRow(row);
 
@@ -152,21 +131,17 @@ public class EventsTable_new {
     private void updateName(Data data) {
         DefaultTableModel model = this.model;
 
-// get selected row index
         int selectedRowIndex = eventsTable.getSelectedRow();
 
-// get selected row data
         String id = model.getValueAt(selectedRowIndex, 0).toString();
         String fname = model.getValueAt(selectedRowIndex, 1).toString();
         String cnp = model.getValueAt(selectedRowIndex, 2).toString();
 
-        // get the entered data
         String NewFullName = JOptionPane.showInputDialog(null,"Enter The New  Name",fname);
         String Newcnp = JOptionPane.showInputDialog(null,"Enter The New CNP",cnp);
 
         data.updateNameClient(id, NewFullName, Newcnp);
 
-// set the new data into jtable row
         model.setValueAt(NewFullName, selectedRowIndex, 1);
         model.setValueAt(Newcnp, selectedRowIndex, 2);
     }

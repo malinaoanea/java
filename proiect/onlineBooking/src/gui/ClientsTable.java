@@ -131,9 +131,6 @@ public class ClientsTable {
 
                         String id = clientsTable.getValueAt(row, 0).toString();
                         data.deleteClient(id);
-//                        text.setText(attendingEvenets);
-//                        newEvent = new JButton("Buy ticket for a new event.");
-//                        jPanel.add(newEvent);
                     }
                     model.removeRow(row);
 
@@ -148,28 +145,12 @@ public class ClientsTable {
                     int row = clientsTable.getSelectedRow();
                     int column = clientsTable.getSelectedColumn();
                     System.out.println(String.valueOf(row) + ", " + String.valueOf(column) + "\n");
-                    String newName = "changed";
-//                    if (clientsTable.getSelectedRow() > -1) {
-//
-////                        String id = clientsTable.getValueAt(row, 0).toString();
-////                        UpdateName changeName = new UpdateName();
-////                        newName = changeName.getName();
-////                        System.out.println(newName);
-////                        data.updateNameClient(id, newName);
-//
-//                    }
-//                    model.setValueAt(newName, row, column);
                     updateName(data);
-//
+
                 }
             });
 
-//            JScrollPane js = new JScrollPane(clientsTable);
-//            tablePanel.setLayout(new BorderLayout());
-//            tablePanel.add(js, BorderLayout.CENTER);
-//            js.setVisible(true);
             jFrame.add(sjp);
-//            jFrame.add(js);
 
             jFrame.add(changeName);
             jFrame.add(deleteClient);
@@ -185,21 +166,17 @@ public class ClientsTable {
         private void updateName(Data data) {
             DefaultTableModel model = this.model;
 
-// get selected row index
             int selectedRowIndex = clientsTable.getSelectedRow();
 
-// get selected row data
             String id = model.getValueAt(selectedRowIndex, 0).toString();
             String fname = model.getValueAt(selectedRowIndex, 1).toString();
             String cnp = model.getValueAt(selectedRowIndex, 2).toString();
 
-            // get the entered data
             String NewFullName = JOptionPane.showInputDialog(null,"Enter The New  Name",fname);
             String Newcnp = JOptionPane.showInputDialog(null,"Enter The New CNP",cnp);
 
             data.updateNameClient(id, NewFullName, Newcnp);
 
-// set the new data into jtable row
             model.setValueAt(NewFullName, selectedRowIndex, 1);
             model.setValueAt(Newcnp, selectedRowIndex, 2);
         }

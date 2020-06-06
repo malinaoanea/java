@@ -123,12 +123,11 @@ public class Data {
 
             }
         }
-
+        System.out.println(str);
         String currentThreadName = Thread.currentThread().getName();
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         Singletone.updateAudit("Showed locations for event " + eventName + " " + location + ',' + timeStamp +',' + currentThreadName, auditFile);
-
-        return location;
+return location;
     }
 
     public String showEventsForClient(String nume, String cnp) {
