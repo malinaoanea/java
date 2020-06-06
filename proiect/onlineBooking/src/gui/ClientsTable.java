@@ -50,15 +50,21 @@ public class ClientsTable {
             jFrame.setSize(new Dimension(800, 600));
 
             Object[][] objects = this.getClients(data);
-
             String[] columns_name = {"id", "Client name", "CNP"};
-            JTable clientsTable = new JTable(objects, columns_name);
 
-            clientsTable.getColumn(columns_name[0]).setMinWidth(3);
-            clientsTable.getColumn(columns_name[1]).setMinWidth(200);
-            clientsTable.getColumn(columns_name[2]).setMinWidth(80);
+            JTable clientsTable = new JTable(objects, columns_name);
+            clientsTable.setPreferredSize(new Dimension(350, 500));
+
+            JScrollPane sjp = new JScrollPane(clientsTable);
+            tablePanel.add(sjp);
+
+            clientsTable.getColumn(columns_name[0]).setMinWidth(2);
+            clientsTable.getColumn(columns_name[1]).setMinWidth(120);
+            clientsTable.getColumn(columns_name[2]).setMinWidth(180);
             JPanel jPanel = new JPanel();
             String name = "";
+
+
             clientsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                 @Override
                 public void valueChanged(ListSelectionEvent event) {
@@ -84,7 +90,7 @@ public class ClientsTable {
 
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    new AddClient(data);
+                    new AddClient(data, clientsTable);
                 }
 
 
@@ -114,6 +120,8 @@ public class ClientsTable {
 //                        newEvent = new JButton("Buy ticket for a new event.");
 //                        jPanel.add(newEvent);
                     }
+
+
                 }
             });
 
@@ -124,13 +132,25 @@ public class ClientsTable {
                     int row = clientsTable.getSelectedRow();
                     int column = clientsTable.getSelectedColumn();
                     System.out.println(String.valueOf(row) + ", " + String.valueOf(column) + "\n");
+
                     if (clientsTable.getSelectedRow() > -1) {
 
                         String id = clientsTable.getValueAt(row, 0).toString();
-                        data.updateNameClient(id, "schimbat");
+                        UpdateName changeName = new UpdateName();
+                        String newName = changeName.getName();
+//                        System.out.println(newName);
+                        data.updateNameClient(id, newName);
                     }
                 }
             });
+
+//            JScrollPane js = new JScrollPane(clientsTable);
+//            tablePanel.setLayout(new BorderLayout());
+//            tablePanel.add(js, BorderLayout.CENTER);
+//            js.setVisible(true);
+            jFrame.add(sjp);
+//            jFrame.add(js);
+
             jFrame.add(changeName);
             jFrame.add(deleteClient);
             jFrame.add(bookEvent);

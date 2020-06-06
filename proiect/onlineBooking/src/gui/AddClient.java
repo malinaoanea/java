@@ -14,7 +14,7 @@ public class AddClient {
         gbcons.gridheight = h; gridBag.setConstraints(comp, gbcons); frame.add(comp);
     }
 
-    public AddClient(Data data) {
+    public AddClient(Data data, JTable table) {
         JFrame addClient = new JFrame("Add client");
         GridBagLayout gridBag = new GridBagLayout();
         GridBagConstraints gbcons = new GridBagConstraints();
@@ -73,5 +73,7 @@ public class AddClient {
         addClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addClient.setVisible(true);
         data.addClient(txtUtilizator.getText(), txtCNP.getText());
+        table
+
     }
 }

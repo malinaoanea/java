@@ -67,7 +67,10 @@ public class Data {
     public void addClient(String name, String CNP) {
         if (dataBaseHelper.checkForClient(people, CNP) == null) {
             dataBaseHelper.addClient(name, CNP);
-            people.add(new Client(name, CNP, String.valueOf(people.size() + 1) ) );
+//            people.add(new Client(name, CNP, String.valueOf(people.size() + 1) ) );
+            String last_id = people.get( people.size() - 1 ).getId();
+            int new_id = Integer.valueOf(last_id)  + 1;
+            people.add(new Client(name, CNP, String.valueOf(new_id) ));
         }
 
         else System.out.println(name + " already in database... :)");
@@ -278,7 +281,6 @@ public class Data {
 
         dataBaseHelper.delete(id, "clients");
         people.remove(person);
-
         String currentThreadName = Thread.currentThread().getName();
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         Singletone.updateAudit("Removed client with id" + id + ',' + timeStamp +',' + currentThreadName, auditFile);

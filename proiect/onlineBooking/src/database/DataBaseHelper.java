@@ -29,7 +29,7 @@ public class DataBaseHelper {
     PreparedStatement ps;
 
     public DataBaseHelper(){
-        url = "jdbc:sqlite:db8.db";
+        url = "jdbc:sqlite:db.db";
         clients = new ArrayList<Person>();
 
         this.connectToDataBase();
@@ -386,9 +386,14 @@ public class DataBaseHelper {
             while (result.next()) {
                 String client_id = result.getString("client_id");
                 String event_id = result.getString("event_id");
-                int n_tickets = Integer.valueOf(result.getString("n_tickets"));
-                System.out.println(client_id + ": " + this.getEventsWitID(events, event_id));
-                this.getClientWitID(people, client_id).addEvent( this.getEventsWitID(events, event_id) );
+                int n_tickets;
+                if (result.getString("n_tickets") != null)
+                    n_tickets = Integer.valueOf(result.getString("n_tickets"));
+                else n_tickets = 0;
+//                System.out.println(client_id + ": " + this.getEventsWitID(events, event_id));
+                System.out.println(client_id + " " + event_id  + " " + n_tickets);
+                if (n_tickets != 0)
+                    this.getClientWitID(people, client_id).addEvent( this.getEventsWitID(events, event_id) );
                 }
 
             } catch (SQLException ex) {
@@ -572,13 +577,16 @@ public class DataBaseHelper {
             ps.executeUpdate();
 
         } catch (Exception e) {
+            System.out.println("In " + table);
             System.out.println(e.getMessage());
         }
     }
 
     public void updateName(String id, String table_name, String newName) {
+
         String sql = "UPDATE " + table_name + " SET name = " + newName
-                + "WHERE id = " + id;
+                + " WHERE id = " + id;
+        System.out.println(sql);
         try {
             ps = conn.prepareStatement(sql);
 
@@ -588,6 +596,7 @@ public class DataBaseHelper {
             ps.executeUpdate();
 
         } catch (Exception e) {
+            System.out.println("In " + table_name);
             System.out.println(e.getMessage());
         }
 
