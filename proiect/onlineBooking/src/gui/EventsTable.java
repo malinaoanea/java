@@ -6,14 +6,18 @@ import event.Event;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
 
+import static javax.swing.JOptionPane.*;
+
 public class EventsTable{
     JTable eventsTable;
+    DefaultTableModel model;
 
     private Object[][] getEvent(Data data) {
         ArrayList<Event> events = data.getEvents();
@@ -40,9 +44,18 @@ public class EventsTable{
 
 
         Object[][] objects = this.getEvent(data);
+        model = new DefaultTableModel();
 
         String[] columns_name = {"id", "Event name"};
-        JTable eventsTable = new JTable(objects, columns_name);
+        JTable eventsTable = new JTable();
+        eventsTable.setModel(model);
+
+        model.addColumn("id");
+        model.addColumn("Event name");
+
+
+        for (Object[] objects1:objects)
+            model.addRow(objects1);
 
         eventsTable.getColumn(columns_name[0]).setMinWidth(200);
         eventsTable.getColumn(columns_name[1]).setMinWidth(80);
@@ -68,15 +81,21 @@ public class EventsTable{
                             String location = bookie.getSelectedButtonText(bookie.getGroup());
                             int n_tickets = Integer.valueOf(bookie.getTickets().getText());
                             data.bookEventLocation(eventName, location, n_tickets);
+
                         }
                     });
                 }
             }
         });
 
+
+
         panel.add(eventsTable);
         jFrame.add(panel);
         jFrame.setVisible(true);
     }
 
+
 }
+
+

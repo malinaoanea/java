@@ -3,6 +3,7 @@ package gui;
 import database.Data;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +15,7 @@ public class AddClient {
         gbcons.gridheight = h; gridBag.setConstraints(comp, gbcons); frame.add(comp);
     }
 
-    public AddClient(Data data, JTable table) {
+    public AddClient(Data data, DefaultTableModel model) {
         JFrame addClient = new JFrame("Add client");
         GridBagLayout gridBag = new GridBagLayout();
         GridBagConstraints gbcons = new GridBagConstraints();
@@ -53,7 +54,8 @@ public class AddClient {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 data.addClient(txtUtilizator.getText(), txtCNP.getText());
-                System.out.println(txtUtilizator.getText() + txtCNP.getText());
+                model.addRow(new Object[]{data.getNewId() ,txtUtilizator.getText(), txtCNP.getText()});
+//                System.out.println(txtUtilizator.getText() + txtCNP.getText());
             }
         });
 
@@ -73,7 +75,7 @@ public class AddClient {
         addClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addClient.setVisible(true);
         data.addClient(txtUtilizator.getText(), txtCNP.getText());
-        table
+//        table
 
     }
 }

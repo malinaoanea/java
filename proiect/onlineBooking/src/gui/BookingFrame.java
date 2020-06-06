@@ -8,6 +8,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.BatchUpdateException;
 import java.util.Enumeration;
 
 public class BookingFrame {
@@ -33,6 +34,12 @@ public class BookingFrame {
         JLabel eticheta = new JLabel("Insert number of ticktes:");
         buttonOK = new JButton("OK");
         JTextField text = new JTextField(2);
+        buttonOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                frame.dispose();
+            }
+        });
         panou.add(eticheta);
         panou.add(text);
         panou.add(buttonOK);
@@ -108,6 +115,7 @@ public class BookingFrame {
 //                System.out.println(txtUtilizator.getText() + txtCNP.getText());
                 System.out.println(txtUtilizator.getText() + " " + txtCNP.getText()  + txtLocation.getText());
                 data.clientBuys(txtUtilizator.getText(), txtCNP.getText(), txtEvent.getText(), txtLocation.getText());
+//                frame.dispose();
             }
         });
 

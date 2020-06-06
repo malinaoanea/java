@@ -582,9 +582,9 @@ public class DataBaseHelper {
         }
     }
 
-    public void updateName(String id, String table_name, String newName) {
+    public void updateName(String id, String table_name, String newName, String newCNP) {
 
-        String sql = "UPDATE " + table_name + " SET name = " + newName
+        String sql = "UPDATE " + table_name + " SET name = " + newName + " cnp = " + newCNP
                 + " WHERE id = " + id;
         System.out.println(sql);
         try {

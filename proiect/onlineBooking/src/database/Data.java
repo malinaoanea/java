@@ -22,6 +22,15 @@ public class Data {
     private DataBaseHelper dataBaseHelper;
     private String auditFile = "audit.csv";
 
+    public int getNewId() {
+        int last_id = Integer.valueOf(people.get(people.size()-1).getId());
+        return last_id;
+    }
+
+    public int getNewIdEv() {
+        int last_id = Integer.valueOf(events.get(events.size()-1).getId());
+        return last_id;
+    }
     public Data() {
         this.people = new ArrayList<>();
         this.locations = new ArrayList<>();
@@ -255,14 +264,14 @@ public class Data {
         //same for locations
         dataBaseHelper.addEvent(name, date, locationName, type);
 
-        if( type == "concert" ) {
+        if( type.equals( "concert") ) {
             dataBaseHelper.addConcert(name, date, locationName, locations, events, String.valueOf(events.size() + 1));
 
         }
-        else if( type == "theatre" ) {
+        else if( type.equals( "theatre") ) {
             dataBaseHelper.addTheatre(name, date, locationName, locations, events, String.valueOf(events.size() + 1) );
         }
-        else if(type == "movie") {
+        else if(type.equals( "movie")) {
             dataBaseHelper.addMovie(name, date, locationName, locations, events, String.valueOf(events.size() + 1));
         }
         else System.out.println("Wrong type for " + name + " taking place at " + locationName + " on " + date);
@@ -287,9 +296,21 @@ public class Data {
 
     }
 
-    public void updateNameClient(String id, String newName) {
+    public void deleteEvent(String id) {
+        Event event = dataBaseHelper.getEventsWitID(events, id);
+
+        dataBaseHelper.delete(id, "events");
+        dataBaseHelper.delete(id, "events");
+        people.remove(event);
+        String currentThreadName = Thread.currentThread().getName();
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Singletone.updateAudit("Removed client with id" + id + ',' + timeStamp +',' + currentThreadName, auditFile);
+
+    }
+
+    public void updateNameClient(String id, String newName, String newCNP) {
         Person person = dataBaseHelper.getClientWitID(people, id);
-        dataBaseHelper.updateName(id, "clients", newName);
+        dataBaseHelper.updateName(id, "clients", newName, newCNP);
 
         person.setName(newName);
 

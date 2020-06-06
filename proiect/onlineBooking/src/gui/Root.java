@@ -64,6 +64,7 @@ public class Root implements ActionListener {
         if (actionEvent.getActionCommand() == "Show events") {
 //            new EventsTable(this.db);
             EventsTable eventsTable = new EventsTable(this.db);
+            EventsTable_new eventsTable_new = new EventsTable_new(this.db);
         } else  {
             ClientsTable clientsTable = new ClientsTable(this.db);
         }
